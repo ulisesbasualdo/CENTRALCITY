@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ParallaxHeroComponent } from "./atomic-ui/organisms/parallax-hero/parallax-hero.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ParallaxHeroComponent],
   template: `
+  <app-parallax-hero />
     <h1>Welcome to {{ title }} my friend!</h1>
     <router-outlet />
   `,
