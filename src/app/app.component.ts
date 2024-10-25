@@ -7,8 +7,6 @@ import { ParallaxHeroComponent } from "./atomic-ui/organisms/parallax-hero/paral
   standalone: true,
   imports: [RouterOutlet, ParallaxHeroComponent],
   template: `
-  <app-parallax-hero />
-    <h1>Welcome to {{ title }} my friend!</h1>
     <router-outlet />
   `,
   styles: [
