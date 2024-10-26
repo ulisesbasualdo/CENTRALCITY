@@ -56,8 +56,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "src/app/core/styles/animations/animations.scss"
+              "src/app/core/styles/styles.scss"
             ],
             "scripts": []
           },

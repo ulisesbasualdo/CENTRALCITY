@@ -1,24 +1,14 @@
-import { Component } from '@angular/core';
-import { ParallaxHeroComponent } from '../../organisms/parallax-hero/parallax-hero.component';
-import { CardComponent } from '../../molecules/card/card.component';
+import { Component, OnInit } from '@angular/core';
+import { TemplateLandingComponent } from "../../templates/template-landing/template-landing.component";
+import { IData } from '../../../core/interfaces/i-data';
+import { DataService } from '../../../core/services/data.service';
 
 @Component({
   selector: 'app-page-landing',
   standalone: true,
-  imports: [ParallaxHeroComponent, CardComponent],
+  imports: [TemplateLandingComponent],
   template: `
-    <app-parallax-hero />
-    <div class="container">
-      <app-card setTitle="Card Title" setSubtitle="Card Subtitle" />
-      <app-card setTitle="Card Title 2" setSubtitle="Card Subtitle 2">
-        <div cardBody>
-          <p>Card Body</p>
-        </div>
-        <div cardFooter>
-          <p>Card Footer</p>
-        </div>
-      </app-card>
-    </div>
+      <app-template-landing [items]="data" />
   `,
   styles: `
   .container{
@@ -31,4 +21,20 @@ import { CardComponent } from '../../molecules/card/card.component';
   }
   `,
 })
-export class PageLandingComponent {}
+export class PageLandingComponent implements OnInit {
+  
+  data!: IData[];
+
+  constructor(private dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.dataService.getData().subscribe({
+      next: (data: IData[]) => {
+        this.data = data;
+      },
+      error: (error) => {
+        console.error('Error fetching data', error);
+      }
+    });
+  }
+}

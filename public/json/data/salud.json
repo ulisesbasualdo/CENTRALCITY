@@ -1,0 +1,101 @@
+{
+  "name": "Salud",
+  "note": "Los dos primeros hospitales listados son el mismo, pero en Google aparecen como distintos y tienen distinto número de teléfono, aunque la dirección es la misma",
+  "description": "Hospitales y centros de salud en la ciudad de Miramar",
+  "places": [
+    {
+      "name": "Hospital Miramar",
+      "locations": [
+        {
+          "address": "Diag. J. M. Dupuy 1550",
+          "googleMapsLink": "https://g.co/kgs/GpV6kuh"
+        }
+      ],
+      "contact": {
+        "phones": [
+          {
+            "number": "02291 43-1778",
+            "link": "tel:+542291431778"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hospital Municipal Dr. Marino Cassano",
+      "locations": [
+        {
+          "address": "Diag. J. M. Dupuy 1550",
+          "googleMapsLink": "https://g.co/kgs/sNjAaj8"
+        }
+      ],
+      "contact": {
+        "phones": [
+          {
+            "number": "02291 43-1253",
+            "link": "tel:+542291431253"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Instituto Médico Privado Mitre SRL",
+      "locations": [
+        {
+          "address": "Av B Mitre 1146",
+          "googleMapsLink": "https://g.co/kgs/1ZgvqdH"
+        }
+      ],
+      "contact": {
+        "phones": [
+          {
+            "number": "02291 42-1149",
+            "link": "tel:+542291421149"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Salita Parquemar, Miramar",
+      "locations": [
+        {
+          "address": "Av. María Erramouspe",
+          "googleMapsLink": "https://g.co/kgs/3XNe4Af"
+        }
+      ]
+    },
+    {
+      "name": "Centro De Atención primaria De Salud \"Las Flores\"",
+      "locations": [
+        {
+          "address": "C. 9 3761",
+          "googleMapsLink": "https://g.co/kgs/cNbrc9V"
+        }
+      ],
+      "contact": {
+        "phones": [
+          {
+            "number": "02291 43-3809",
+            "link": "tel:+542291433809"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Caps Belgrano",
+      "locations": [
+        {
+          "address": "C. 43 2399-2499",
+          "googleMapsLink": "https://g.co/kgs/pbruyEd"
+        }
+      ],
+      "contact": {
+        "phones": [
+          {
+            "number": "02291 43-3295",
+            "link": "tel:+542291433295"
+          }
+        ]
+      }
+    }
+  ]
+}
