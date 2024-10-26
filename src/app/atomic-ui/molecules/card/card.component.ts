@@ -7,8 +7,9 @@ import { Component, Input } from '@angular/core';
   template: `
       <div class="card">
         <div class="card-header">
-          <h3>{{ getTitle }}</h3>
-          <h6>{{ getSubtitle }}</h6>
+          <h2 class="title">{{ title }}</h2>
+          <p>{{ subtitle }}</p>
+          <p>{{ subtitleWarning }}</p>
         </div>
         <div class="card-body">
           <ng-content select="[cardBody]"></ng-content>
@@ -21,20 +22,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
-  private _title!: string;
-  private _subtitle!: string;
-
-  @Input() set setTitle(title: string) {
-    this._title = title;
-  }
-  get getTitle(): string {
-    return this._title;
-  }
-
-  @Input() set setSubtitle(subtitle: string) {
-    this._subtitle = subtitle;
-  }
-  get getSubtitle(): string {
-    return this._subtitle;
-  }
+  @Input() title!: string;
+  @Input() subtitle!: string;
+  @Input() subtitleWarning!: string;
 }
