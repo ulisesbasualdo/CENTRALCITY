@@ -1,162 +1,329 @@
 {
+  "id": 1,
   "name": "Remises",
+  "note": "",
   "description": "Servicios de remises disponibles en la ciudad de Miramar",
-  "places": [
+  "dataItems": [
     {
       "name": "Remisse Plaza",
-      "locations": [
-        {
-          "address": "Calle 23 1768",
-          "googleMapsLink": "https://g.co/kgs/GbxFFwL"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 43-1349",
-            "link": "tel:+542291431349"
-          },
-          {
-            "number": "02291 432076",
-            "link": "tel:+542291432076"
-          }
-        ]
+      "location": {
+        "address": "Calle 23 1768",
+        "googleMapsLink": "https://g.co/kgs/GbxFFwL"
+      },
+      "phone": {
+        "number": "02291 43-1349",
+        "link": "tel:+542291431349",
+        "tentativeNumber": "02291 432076",
+        "tentativeLink": "tel:+542291432076"
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": "",
+        "instagram": "",
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     },
     {
       "name": "Remis Sur",
-      "locations": [
-        {
-          "address": "Calle 23 2225",
-          "googleMapsLink": "https://g.co/kgs/zt1jGdy"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 42-1017",
-            "link": "tel:+542291421017"
-          }
-        ]
+      "location": {
+        "address": "Calle 23 2225",
+        "googleMapsLink": "https://g.co/kgs/zt1jGdy"
+      },
+      "phone": {
+        "number": "02291 42-1017",
+        "link": "tel:+542291421017",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": "",
+        "instagram": "",
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     },
     {
       "name": "Remisse Pronto",
-      "locations": [
-        {
-          "address": "Centro Zona 4, Calle 23 1031",
-          "googleMapsLink": "https://g.co/kgs/eV7EpUr"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 42-0000",
-            "link": "tel:+542291420000"
-          }
-        ]
+      "location": {
+        "address": "Centro Zona 4, Calle 23 1031",
+        "googleMapsLink": "https://g.co/kgs/eV7EpUr"
+      },
+      "phone": {
+        "number": "02291 42-0000",
+        "link": "tel:+542291420000",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": "",
+        "instagram": "",
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     },
     {
       "name": "Remise Plaza panda",
-      "locations": [
-        {
-          "address": "Diagonal Fortunato de la Plaza 1452, Centro",
-          "googleMapsLink": "https://g.co/kgs/P5Va3Bu"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 43-0517",
-            "link": "tel:+542291430517"
-          }
-        ]
+      "location": {
+        "address": "Diagonal Fortunato de la Plaza 1452, Centro",
+        "googleMapsLink": "https://g.co/kgs/P5Va3Bu"
+      },
+      "phone": {
+        "number": "02291 43-0517",
+        "link": "tel:+542291430517",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": "",
+        "instagram": "",
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     },
     {
       "name": "Remiseria Miramar",
-      "locations": [
-        {
-          "address": "Calle 21 1818, Centro",
-          "googleMapsLink": "https://g.co/kgs/hheioJB"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 42-3200",
-            "link": "tel:+542291423200"
-          }
-        ]
+      "location": {
+        "address": "Calle 21 1818, Centro",
+        "googleMapsLink": "https://g.co/kgs/hheioJB"
+      },
+      "phone": {
+        "number": "02291 42-3200",
+        "link": "tel:+542291423200",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": "",
+        "instagram": "",
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     },
     {
       "name": "Remises Danny",
-      "locations": [
-        {
-          "address": "Calle 26 1859",
-          "googleMapsLink": "https://g.co/kgs/SA7D8WB"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 43-0034",
-            "link": "tel:+542291430034"
-          }
-        ]
+      "location": {
+        "address": "Calle 26 1859",
+        "googleMapsLink": "https://g.co/kgs/SA7D8WB"
+      },
+      "phone": {
+        "number": "02291 43-0034",
+        "link": "tel:+542291430034",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": "",
+        "instagram": "",
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     },
     {
       "name": "Hola Remisse",
-      "locations": [
-        {
-          "address": "Calle 30 1053",
-          "googleMapsLink": "https://g.co/kgs/srjFPzu"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 42-2720",
-            "link": "tel:+542291422720"
-          }
-        ]
+      "location": {
+        "address": "Calle 30 1053",
+        "googleMapsLink": "https://g.co/kgs/srjFPzu"
+      },
+      "phone": {
+        "number": "02291 42-2720",
+        "link": "tel:+542291422720",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": "",
+        "instagram": "",
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     },
     {
       "name": "Centro Taxi",
-      "locations": [
-        {
-          "address": "Calle 21 1621, Centro",
-          "googleMapsLink": "https://g.co/kgs/pvBxFQc"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 43-2929",
-            "link": "tel:+542291432929"
-          }
-        ]
+      "location": {
+        "address": "Calle 21 1621, Centro",
+        "googleMapsLink": "https://g.co/kgs/pvBxFQc"
+      },
+      "phone": {
+        "number": "02291 43-2929",
+        "link": "tel:+542291432929",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": "",
+        "instagram": "",
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     },
     {
       "name": "Mitre Remisse",
-      "locations": [
-        {
-          "address": "Calle 26 664",
-          "googleMapsLink": "https://g.co/kgs/ErmRx72"
-        }
-      ],
-      "contact": {
-        "phones": [
-          {
-            "number": "02291 43-0055",
-            "link": "tel:+542291430055"
-          }
-        ]
+      "location": {
+        "address": "Calle 26 664",
+        "googleMapsLink": "https://g.co/kgs/ErmRx72"
+      },
+      "phone": {
+        "number": "02291 43-0055",
+        "link": "tel:+542291430055",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "social": {
+        "facebook": {
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        "instagram": {
+          "username": "",
+          "link": ""
+        },
+        "twitter": "",
+        "youtube": "",
+        "tiktok": "",
+        "web": "",
+        "email": "",
+        "linkedin": ""
       }
     }
   ]

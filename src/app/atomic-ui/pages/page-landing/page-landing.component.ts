@@ -8,7 +8,7 @@ import { DataService } from '../../../core/services/data.service';
   standalone: true,
   imports: [TemplateLandingComponent],
   template: `
-      <app-template-landing [items]="data" />
+      <app-template-landing [data]="data" />
   `,
   styles: `
   .container{
@@ -31,6 +31,8 @@ export class PageLandingComponent implements OnInit {
     this.dataService.getData().subscribe({
       next: (data: IData[]) => {
         this.data = data;
+        console.log('this.data:', this.data);
+        console.log('data:', data);
       },
       error: (error) => {
         console.error('Error fetching data', error);
