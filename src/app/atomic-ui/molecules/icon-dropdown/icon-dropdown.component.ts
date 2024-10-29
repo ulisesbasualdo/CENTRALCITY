@@ -14,13 +14,15 @@ import { Subscription } from 'rxjs';
 
 export interface IconDropdown {
   iconImg?: string;
-  dropdownData?: {
-    username?: string;
-    name?: string;
-    type?: string;
-    link?: string;
-  };
+  dropdownData?: DropdownData;
   platform?: string;
+}
+
+export interface DropdownData {
+  username?: string;
+  name?: string;
+  type?: string;
+  link?: string;
 }
 
 @Component({
@@ -133,19 +135,10 @@ export class IconDropdownComponent implements OnInit {
     );
   }
 
+  
+
   isData(): boolean {
-    let isData: boolean = false;
-    const data = this.iconDropdown.dropdownData;
-    if (data) {
-      if (
-        Object.values(data).filter(
-          (value) => value !== null && value !== undefined
-        ).length > 0
-      ) {
-        isData = true;
-      }
-    }
-    return isData;
+   return this.dropdownService.isData(this.iconDropdown.dropdownData);
   }
 
   isDataString(string: string | undefined): boolean {
