@@ -30,21 +30,20 @@ export interface IDataItem {
     tentativeNumber: string;
     tentativeLink: string;
   };
-  social: {
-    facebook: {
-      name: string;
-      type: 'Página' | 'Grupo' | 'Perfil Personal' | '';
-      link: string;
-    };
-    instagram: {
-      username: string;
-      link: string;
-    };
-    twitter: string;
-    youtube: string;
-    tiktok: string;
-    web: string;
-    email: string;
-    linkedin: string;
+  email: {
+    address: string;
+    link: string;
   };
+  web: {
+    url: string;
+  };
+  social: ISocialData[];
+}
+
+export interface ISocialData {
+  platform: 'fb' | 'ig' | 'x' | 'yt' | 'li' | 'tt' | 'gmaps' | null;
+  username: string;
+  name: string;
+  type: string;
+  link: string;
 }

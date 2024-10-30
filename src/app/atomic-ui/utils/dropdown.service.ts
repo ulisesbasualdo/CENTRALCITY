@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { DropdownData } from '../molecules/icon-dropdown/icon-dropdown.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class DropdownService {
     this.dropdownState.next(id);
   }
 
-  isData(dropdownData: DropdownData | undefined): boolean {
+  isData(dropdownData: any | undefined): boolean {
     let isData: boolean = false;
     const data = dropdownData;
     if (data) {

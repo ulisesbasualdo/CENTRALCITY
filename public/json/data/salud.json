@@ -28,23 +28,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": {
-          "name": "hospitalito",
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": "https://hospitalmiramar.com.ar/"
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "@hospitalmiramar",
+          "name": "Hospital Miramar",
           "type": "",
           "link": ""
         },
-        "instagram": {
-          "username": "",
+        {
+          "platform": "ig",
+          "username": "@hospitalmiramar",
           "link": ""
         },
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+        {
+          "platform": "x",
+          "username": "@hospitalmiramar",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "Hospital Miramar",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "hospitalmiramar",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "Hospital Miramar Empleos",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Hospital Municipal Dr. Marino Cassano",
@@ -70,23 +94,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": {
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
           "name": "",
           "type": "",
           "link": ""
         },
-        "instagram": {
+        {
+          "platform": "ig",
           "username": "",
           "link": ""
         },
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Instituto Médico Privado Mitre SRL",
@@ -112,19 +160,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": {
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
           "name": "",
           "type": "",
           "link": ""
         },
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Salita Parquemar, Miramar",
@@ -150,23 +226,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": {
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
           "name": "",
           "type": "",
           "link": ""
         },
-        "instagram": {
+        {
+          "platform": "ig",
           "username": "",
           "link": ""
         },
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Centro De Atención primaria De Salud Las Flores",
@@ -192,23 +292,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": {
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
           "name": "",
           "type": "",
           "link": ""
         },
-        "instagram": {
+        {
+          "platform": "ig",
           "username": "",
           "link": ""
         },
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Caps Belgrano",
@@ -234,23 +358,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": {
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
           "name": "",
           "type": "",
           "link": ""
         },
-        "instagram": {
+        {
+          "platform": "ig",
           "username": "",
           "link": ""
         },
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     }
   ]
 }

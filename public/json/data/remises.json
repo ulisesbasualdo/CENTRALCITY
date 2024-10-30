@@ -28,16 +28,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Remis Sur",
@@ -63,16 +94,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Remisse Pronto",
@@ -98,16 +160,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Remise Plaza panda",
@@ -133,16 +226,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Remiseria Miramar",
@@ -168,16 +292,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Remises Danny",
@@ -203,16 +358,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Hola Remisse",
@@ -238,16 +424,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Centro Taxi",
@@ -273,16 +490,47 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     },
     {
       "name": "Mitre Remisse",
@@ -308,23 +556,35 @@
         "tentativeNumber": "",
         "tentativeLink": ""
       },
-      "social": {
-        "facebook": {
-          "name": "",
-          "type": "",
-          "link": ""
-        },
-        "instagram": {
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "x",
           "username": "",
           "link": ""
         },
-        "twitter": "",
-        "youtube": "",
-        "tiktok": "",
-        "web": "",
-        "email": "",
-        "linkedin": ""
-      }
+        {
+          "platform": "yt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": ""
+        }
+      ]
     }
   ]
 }
