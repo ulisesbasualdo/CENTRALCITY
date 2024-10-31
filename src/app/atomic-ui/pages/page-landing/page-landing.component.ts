@@ -10,16 +10,7 @@ import { DataService } from '../../../core/services/data.service';
   template: `
       <app-template-landing [data]="data" />
   `,
-  styles: `
-  .container{
-    display: flex;
-    gap: 1em;
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-  `,
+  styles: ``,
 })
 export default class PageLandingComponent implements OnInit {
   

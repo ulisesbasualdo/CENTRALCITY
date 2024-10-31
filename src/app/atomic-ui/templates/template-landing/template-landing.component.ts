@@ -26,7 +26,10 @@ import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdo
           <div class="container">
             @if(item.dataItems){ 
               @for(dataItem of item.dataItems; track dataItem){
-                <app-card title="{{ dataItem.name }}">
+                <app-card 
+                [isNewCard]=dataItem.newCard 
+                [title]=dataItem.name
+                >
                   <div cardBody class="inline-block">
                     <div>
                       @if(dataItem.location){ 

@@ -72,6 +72,7 @@
     },
     {
       "name": "Remis Sur",
+      "newCard": true,
       "location": {
         "address": "Calle 23 2225",
         "googleMapsLink": "https://g.co/kgs/zt1jGdy"

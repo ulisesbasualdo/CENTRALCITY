@@ -8,6 +8,7 @@ export interface IData {
 
 export interface IDataItem {
   name: string;
+  newCard: boolean;
   location: {
     address: string;
     googleMapsLink: string;
