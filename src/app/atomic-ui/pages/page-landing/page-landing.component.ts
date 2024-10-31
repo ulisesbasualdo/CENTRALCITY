@@ -21,7 +21,7 @@ import { DataService } from '../../../core/services/data.service';
   }
   `,
 })
-export class PageLandingComponent implements OnInit {
+export default class PageLandingComponent implements OnInit {
   
   data!: IData[];
 

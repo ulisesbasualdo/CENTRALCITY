@@ -3,6 +3,16 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "",
+    "paths": {
+      "@pages/*": ["src/app/atomic-ui/pages/*"],
+      "@templates/*": ["src/app/atomic-ui/templates/*"],
+      "@organisms/*": ["src/app/atomic-ui/organisms/*"],
+      "@molecules/*": ["src/app/atomic-ui/molecules/*"],
+      "@atoms/*": ["src/app/atomic-ui/atoms/*"],
+      "@utils/*": ["src/app/atomic-ui/utils/*"],
+    },
+    "forceConsistentCasingInFileNames": true,
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

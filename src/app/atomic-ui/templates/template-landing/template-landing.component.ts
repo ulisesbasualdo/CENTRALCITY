@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ParallaxHeroComponent } from '../../organisms/parallax-hero/parallax-hero.component';
 import { TitleSubtitleComponent } from '../../atoms/title-subtitle/title-subtitle.component';
 import { CardComponent } from '../../molecules/card/card.component';
@@ -84,7 +84,6 @@ import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdo
     .container{
       display: flex;
       gap: 1em;
-      justify-content: center;
       align-items: stretch;
       flex-wrap: wrap;
       margin-top: 2rem;
@@ -93,9 +92,13 @@ import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdo
     div{
         *{
           display: inline-block;
-          padding-inline: 1em;
+          padding-right: 1em;
         }
     }
+    > * {
+    padding-block: 0.5em;
+    padding-right: 1em;
+}
   }
   `,
 })

@@ -80,7 +80,7 @@ import { ISocialData } from '../../../core/interfaces/i-data';
     display: none;
     background-color: black;
     color: white;
-    border: 1px solid black;
+    border-radius: 0.5em;
     padding: 0.5em 1em;
     position: absolute;
     top: 100%;
@@ -88,6 +88,9 @@ import { ISocialData } from '../../../core/interfaces/i-data';
     transform: translateX(-50%);
     z-index: 1;
     width: 300px;
+    &.on-hover {
+      background-color: #000000cc;
+    }
   }
 
   .social-data.on-hover:hover {
