@@ -1,9 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
 import { ParallaxHeroComponent } from '../../organisms/parallax-hero/parallax-hero.component';
 import { TitleSubtitleComponent } from '../../atoms/title-subtitle/title-subtitle.component';
 import { CardComponent } from '../../molecules/card/card.component';
-import { IData } from '../../../core/interfaces/i-data';
+import { IData, ISocialData } from '../../../core/interfaces/i-data';
 import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdown.component';
+import { DataViewComponent } from "../../molecules/data-view/data-view.component";
+import { IconImgComponent } from "../../atoms/icon-img/icon-img.component";
+import { DataViewService } from '@utils/data-view.service';
 
 @Component({
   selector: 'app-template-landing',
@@ -13,7 +16,9 @@ import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdo
     TitleSubtitleComponent,
     CardComponent,
     IconDropdownComponent,
-  ],
+    DataViewComponent,
+    IconImgComponent
+],
   template: `
     <app-parallax-hero />
     @if(data){ 
@@ -33,9 +38,6 @@ import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdo
                   <div cardBody class="inline-block">
                     <div>
                       @if(dataItem.location){ 
-                        @if(dataItem.location.address){
-                          <p>{{ dataItem.location.address }}</p>
-                        } 
                         @if(dataItem.location.googleMapsLink){
                             <app-icon-dropdown 
                               [onHover]="true"
@@ -45,35 +47,34 @@ import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdo
                             />
                         } 
                       }
-                    </div>
-                    <div>
                       @if(dataItem.phone) { 
-                        @if(dataItem.phone.number){
-                          <p>{{ dataItem.phone.number }}</p>
-                        } 
-                        @if(dataItem.phone.link){
-                          <a href="{{ dataItem.phone.link }}">Llamar</a>
-                        } 
+                        <app-icon-dropdown 
+                              [onHover]="true"
+                              [description]="'Haz click para llamar a ' + dataItem.name "
+                              [customIconImg]="'img/icons/tel.png'"
+                              [externalLink]="dataItem.phone.link"
+                        />
                       }
                     </div>
                     @if(dataItem.social){
-                      @if(dataItem.social.length > 0){
                         @for(dataSocial of dataItem.social; track dataSocial){
-                          <app-icon-dropdown
-                            [iconDropdown]="{
-                              platform: dataSocial.platform,
-                              username: dataSocial.username,
-                              name: dataSocial.name,
-                              type: dataSocial.type,
-                              link: dataSocial.link,
-                            }"
-                          />
+                          @if (dataSocial.platform && dataSocial.platform.length > 0) {
+                            <icon-img 
+                            [srcPredefined]="dataSocial.platform"
+                            [alt]="dataSocial.platform"
+                            (onClick)="setSocialDataInDataView(dataSocial)"
+                            />
+                            <!-- <img 
+                              class = "icon"
+                              (click)="dataViewContent.set(dataSocial) " 
+                              src="{{defineIconImg(dataSocial.platform)}}" alt=""
+                            > -->
+                          }
                         }
-                      }
                     }
+                  <app-data-view [socialData]="getContentSocial()" />
                   </div>
                   <div cardFooter>
-                    <p>Card Footer</p>
                   </div>
                 </app-card>
               }
@@ -102,13 +103,27 @@ import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdo
     padding-block: 0.5em;
     padding-right: 1em;
 }
+img.icon {
+    width: 2em;
+    height: auto;
+  }
   }
   `,
 })
 export class TemplateLandingComponent {
   @Input() data!: IData[];
 
+  constructor (private dataViewService: DataViewService) {}
+  
+  setSocialDataInDataView(data: ISocialData) {
+    this.dataViewService.contentSocial.set(data);
+  }
+  getContentSocial() {
+    return this.dataViewService.contentSocial();
+  }
+
   trackByFn(index: number, item: any): any {
     return item.id || index;
   }
+
 }

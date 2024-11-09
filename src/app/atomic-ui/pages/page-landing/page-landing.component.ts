@@ -22,8 +22,6 @@ export default class PageLandingComponent implements OnInit {
     this.dataService.getData().subscribe({
       next: (data: IData[]) => {
         this.data = data;
-        console.log('this.data:', this.data);
-        console.log('data:', data);
       },
       error: (error) => {
         console.error('Error fetching data', error);

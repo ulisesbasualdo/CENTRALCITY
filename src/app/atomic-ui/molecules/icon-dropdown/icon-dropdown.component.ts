@@ -3,15 +3,19 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
   OnChanges,
   OnInit,
+  Output,
+  output,
   SimpleChanges,
 } from '@angular/core';
 import { DropdownService } from '../../utils/dropdown.service';
 import { Subscription } from 'rxjs';
 import { ISocialData } from '../../../core/interfaces/i-data';
+import { PredefinedIconService } from '@utils/predefined-icon.service';
 
 @Component({
   selector: 'app-icon-dropdown',
@@ -22,7 +26,9 @@ import { ISocialData } from '../../../core/interfaces/i-data';
       @if( isData() ){
         <img
           class="icon-img pointer"
-          (click)="toggleDropDown($event)"
+          (click)="[toggleDropDown($event),
+            onClick.emit($event)
+          ]"
           [src]="iconImg ? iconImg : ''"
           alt=""
         />
@@ -119,6 +125,7 @@ import { ISocialData } from '../../../core/interfaces/i-data';
 export class IconDropdownComponent implements OnInit {
   @Input() iconDropdown!: ISocialData;
 
+  @Output() onClick = new EventEmitter<Event>();
 
   iconImg!: string | null;
 
@@ -133,7 +140,8 @@ export class IconDropdownComponent implements OnInit {
 
   constructor(
     private elRef: ElementRef,
-    private dropdownService: DropdownService
+    private dropdownService: DropdownService,
+    private predefinedIconService: PredefinedIconService
   ) {}
 
   ngOnInit() {
@@ -142,7 +150,9 @@ export class IconDropdownComponent implements OnInit {
         this.dropDownShown = false;
       }
     });
-    this.defineIconImg();
+    if(this.iconDropdown?.platform && this.iconDropdown.platform.length > 0) {
+    this.predefinedIconService.defineIconImg(this.iconDropdown.platform);
+    }
   }
 
   ngOnDestroy() {
@@ -172,34 +182,7 @@ export class IconDropdownComponent implements OnInit {
     return string !== null && string !== undefined && string.length > 0;
   }
 
-  defineIconImg(): void {
-    if(this.iconDropdown && this.iconDropdown.platform !== undefined){
-    switch (this.iconDropdown.platform) {
-      case 'fb':
-        this.iconImg = 'img/icons/fb.png';
-        break;
-      case 'ig':
-        this.iconImg = 'img/icons/ig.png';
-        break;
-      case 'x':
-        this.iconImg = 'img/icons/x.png';
-        break;
-      case 'yt':
-        this.iconImg = 'assets/icons/youtube.svg';
-        break;
-      case 'li':
-        this.iconImg = 'assets/icons/linkedin.svg';
-        break;
-      case 'tt':
-        this.iconImg = 'assets/icons/tiktok.svg';
-        break;
-      case 'gmaps':
-        this.iconImg = 'img/icons/gmaps.png';
-        break;
-      default:
-        this.iconImg = null;
-    }}
-  }
+  
 
   goToLink(link: string): void {
     window.open(link, '_blank');
