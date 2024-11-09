@@ -56,6 +56,6 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
 export class DataViewComponent {
 
   otherData = input<IData>();
-  socialData = input<ISocialData>();
+  socialData = input<ISocialData | null>();
 
 }
