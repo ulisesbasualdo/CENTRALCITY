@@ -1,4 +1,4 @@
-import { Component, input, OnInit, signal } from '@angular/core';
+import { Component, effect, EventEmitter, inject, Inject, input, OnInit, signal } from '@angular/core';
 import { DataViewService } from '@utils/data-view.service';
 import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
 
@@ -7,7 +7,18 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
   standalone: true,
   imports: [],
   template: `
-    @if(socialData()){
+    <!-- @if(socialData){
+      <div 
+      [class.display-block]="socialData"
+      [class.display-none]="!socialData"
+      class="data-view">
+        @if(socialData.username) { <p> {{socialData.username}} </p> }
+        @if(socialData.name) { <p> {{socialData.name}} </p> }
+        @if(socialData.type) { <p> {{socialData.type}} </p> }
+        @if(socialData.link) { <p> {{socialData.link}} </p> }
+      </div>
+    } -->
+    @if(displayBlock){
       <div 
       [class.display-block]="socialData()"
       [class.display-none]="!socialData()"
@@ -16,7 +27,6 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
         @if(socialData()?.name) { <p> {{socialData()?.name}} </p> }
         @if(socialData()?.type) { <p> {{socialData()?.type}} </p> }
         @if(socialData()?.link) { <p> {{socialData()?.link}} </p> }
-        hola
       </div>
     }
   `,
@@ -55,7 +65,26 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
 })
 export class DataViewComponent {
 
+
   otherData = input<IData>();
   socialData = input<ISocialData | null>();
+  containerIndex = input<number | null>();
+  
+  
+  displayBlock: boolean = false;
 
+  constructor (private dataViewService: DataViewService) {
+    effect(() => {
+      if(this.containerIndex() === this.dataViewService.containerIndex()){
+        this.displayBlock = true;
+      } 
+      else{
+        this.displayBlock = false;
+      }
+      console.log(this.containerIndex(), this.dataViewService.containerIndex())
+    })
+  }
+
+  
+  
 }

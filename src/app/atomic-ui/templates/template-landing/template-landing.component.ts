@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, Input, signal, viewChild, viewChildren } from '@angular/core';
 import { ParallaxHeroComponent } from '../../organisms/parallax-hero/parallax-hero.component';
 import { TitleSubtitleComponent } from '../../atoms/title-subtitle/title-subtitle.component';
 import { CardComponent } from '../../molecules/card/card.component';
@@ -15,73 +15,51 @@ import { DataViewService } from '@utils/data-view.service';
     ParallaxHeroComponent,
     TitleSubtitleComponent,
     CardComponent,
-    IconDropdownComponent,
     DataViewComponent,
     IconImgComponent
 ],
   template: `
-    <app-parallax-hero />
     @if(data){ 
-      @for(item of data; track item){
+      <app-parallax-hero />
+      @for(item of data; track item; let itemIndex = $index){
         <section>
           <app-title-subtitle
-            title="{{ item.name }}"
-            subtitle="{{ item.description }}"
+            [title]=item.name
+            [subtitle]=item.description
           />
           <div class="container">
-            @if(item.dataItems){ 
-              @for(dataItem of item.dataItems; track dataItem){
-                <app-card 
+            @for(dataItem of item.dataItems; track dataItem; let dataItemIndex = $index;){
+              <app-card #card
                 [isNewCard]=dataItem.newCard 
                 [title]=dataItem.name
-                >
-                  <div cardBody class="inline-block">
-                    <div>
-                      @if(dataItem.location){ 
-                        @if(dataItem.location.googleMapsLink){
-                            <app-icon-dropdown 
-                              [onHover]="true"
-                              [description]="'Ver ubicación de ' + dataItem.name + ' en Google Maps'"
-                              [customIconImg]="'img/icons/gmaps.png'"
-                              [externalLink]="dataItem.location.googleMapsLink"
-                            />
-                        } 
-                      }
-                      @if(dataItem.phone) { 
-                        <app-icon-dropdown 
-                              [onHover]="true"
-                              [description]="'Haz click para llamar a ' + dataItem.name "
-                              [customIconImg]="'img/icons/tel.png'"
-                              [externalLink]="dataItem.phone.link"
-                        />
-                      }
-                    </div>
-                    @if(dataItem.social){
-                        @for(dataSocial of dataItem.social; track dataSocial){
-                          @if (dataSocial.platform && dataSocial.platform.length > 0) {
-                            <icon-img 
-                            [srcPredefined]="dataSocial.platform"
-                            [alt]="dataSocial.platform"
-                            (onClick)="setSocialDataInDataView(dataSocial)"
-                            />
-                            <!-- <img 
-                              class = "icon"
-                              (click)="dataViewContent.set(dataSocial) " 
-                              src="{{defineIconImg(dataSocial.platform)}}" alt=""
-                            > -->
-                          }
-                        }
+                [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)"
+
+              >
+                <div cardBody class="inline-block">
+                  <div>
+                    @for(dataSocial of dataItem.social; track dataSocial; let j = $index){
+                      <icon-img 
+                        [srcPredefined]=dataSocial.platform
+                        [alt]=dataSocial.platform
+                        (onClick)="setDataViewAndContainer(itemIndex, dataSocial, dataItemIndex, j)"
+                      />
                     }
-                  <app-data-view [socialData]="getContentSocial()" />
                   </div>
-                  <div cardFooter>
-                  </div>
-                </app-card>
-              }
+                </div>
+                <div dataView>
+                  <app-data-view 
+                  [socialData]=socialData
+                  [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)" />
+                </div>
+                <div cardFooter></div>
+              </app-card>
             }
           </div>
         </section>
       } 
+    }
+    @else {
+      <h2>Ha sucedido un error temporal, estamos trabajando en resolverlo.</h2>
     }
   `,
   styles: `
@@ -112,18 +90,30 @@ img.icon {
 })
 export class TemplateLandingComponent {
   @Input() data!: IData[];
+  cardComponents = viewChildren<CardComponent>('card');
 
-  constructor (private dataViewService: DataViewService) {}
+  containerIndex = signal<number>(0);
+  contentIndex = signal<number>(0);
+
+  public socialData!: ISocialData | null;
   
-  setSocialDataInDataView(data: ISocialData) {
-    this.dataViewService.contentSocial.set(data);
+  constructor (private dataViewService: DataViewService) {
+    effect(() => {
+      this.socialData = this.dataViewService.contentSocial();
+    })
   }
-  getContentSocial() {
-    return this.dataViewService.contentSocial();
+  
+  setDataViewAndContainer(itemIndex:number, data: ISocialData, dataItemIndex: number, content: number) {
+    this.dataViewService.contentSocial.set(data);
+    let formatedContainerIndex = this.formatContainerIndex(itemIndex, dataItemIndex);
+
+    this.dataViewService.containerIndex.set(formatedContainerIndex);
+    this.containerIndex.set(formatedContainerIndex);
   }
 
-  trackByFn(index: number, item: any): any {
-    return item.id || index;
+  formatContainerIndex(itemIndex:number,dataItemIndex:number): number {
+    let result = itemIndex.toString() + dataItemIndex.toString();
+    return parseInt(result);
   }
 
 }

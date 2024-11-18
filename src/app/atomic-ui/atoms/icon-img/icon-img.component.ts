@@ -38,7 +38,7 @@ export class IconImgComponent {
 
   private _srcPredefined!: string;
 
-  @Input() set srcPredefined(value: string) {
+  @Input() set srcPredefined(value: string | null) {
     if (value){
       let formattedSrc: string
       formattedSrc = this.setPredefinedIcon(value);
@@ -49,7 +49,7 @@ export class IconImgComponent {
     return this._srcPredefined;
   }
 
-  alt = input<string>();
+  alt = input<string | null>();
   tooltip = input<string>();
 
   onClick = output<Event>();
