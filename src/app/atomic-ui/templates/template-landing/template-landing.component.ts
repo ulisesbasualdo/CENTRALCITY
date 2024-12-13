@@ -45,11 +45,12 @@ import { DataViewService } from '@utils/data-view.service';
                       />
                     }
                   </div>
-                </div>
-                <div dataView>
                   <app-data-view 
                   [socialData]=socialData
-                  [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)" />
+                  [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)" 
+                  style="min-width: 100%;"
+                  />
+                  
                 </div>
                 <div cardFooter></div>
               </app-card>
@@ -79,7 +80,8 @@ import { DataViewService } from '@utils/data-view.service';
     }
     > * {
     padding-block: 0.5em;
-    padding-right: 1em;
+    display: flex;
+    justify-content: space-evenly;
 }
 img.icon {
     width: 2em;
