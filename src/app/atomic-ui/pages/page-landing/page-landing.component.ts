@@ -8,7 +8,7 @@ import { DataService } from '../../../core/services/data.service';
   standalone: true,
   imports: [TemplateLandingComponent],
   template: `
-      <app-template-landing [data]="data" />
+    <app-template-landing [data]="data" />
   `,
   styles: ``,
 })
