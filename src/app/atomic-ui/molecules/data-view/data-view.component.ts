@@ -22,7 +22,7 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
 @Component({
   selector: 'app-data-view',
   standalone: true,
-  imports: [NgStyle],
+  imports: [],
   template: `
     @if(displayBlock){
     <div
@@ -45,7 +45,7 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
         #btnClose
         class="btn-close"
         [style]="{ height: dataView.style.height + 'px' }"
-        (click)="(!displayBlock)"
+        (click)="closeDataView()"
       >
         <span>x</span>
       </div>
@@ -147,5 +147,10 @@ export class DataViewComponent implements OnChanges, AfterViewInit {
       this.dataView()?.nativeElement.offsetHeight
     }px`;
     this.btnCloseHeight = this.dataViewHeight;
+  }
+
+  closeDataView() {
+    this.displayBlock = false;
+    this.dataViewService.containerIndex.set(null);
   }
 }

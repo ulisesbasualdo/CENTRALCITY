@@ -12,13 +12,6 @@ export class DataViewService {
 
   containerContentDictionary = signal<{ [key: number]: number }>({});
 
-  // get getContentSocial() {
-  //   return this.contentSocial();
-  // }
-
-  // get getCardComponent(){
-  //   return this.containerIndex.prototype
-  // }
 
   setDataViewAndContainer(data: ISocialData, containerIndex: number, contentIndex: number   ) {
     this.contentSocial.set(data);
