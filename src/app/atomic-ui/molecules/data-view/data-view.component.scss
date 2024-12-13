@@ -1,7 +1,3 @@
-.display-block {
-  display: block;
-}
-
 .data-view {
   display: flex;
   background-color: black;
@@ -24,6 +20,7 @@
 
 .btn-common-persistents {
   display: inline-flex;
+
 }
 
 .btn-persistent {
@@ -67,10 +64,6 @@
   }
 }
 
-.display-none {
-  display: none;
-}
-
 data-view-rounded {
   display: flex;
   background-color: #000000;
@@ -94,3 +87,29 @@ data-view-rounded {
 width-max-content {
   width: max-content;
 }
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
+  height: 0;
+  
+  
+}
+
+.visible {
+  opacity: 1;
+  height: auto;
+}
+
+.fade:not(.visible) {
+  opacity: 0;
+  animation: fadeOut 0.3s ease-in-out, height 0.3s ease-in-out;
+  height: fit-content;
+  >
+  .btn-common-persistents {
+    height: fit-content;
+    }
+  
+}
+
+@import 'src/app/core/styles/animations.scss';

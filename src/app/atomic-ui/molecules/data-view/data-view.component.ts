@@ -27,15 +27,19 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
     @if(displayBlock){
     <div
       #dataView
-      [class.display-block]="socialData()"
       [class.data-view]="socialData()"
-      [class.display-none]="!socialData()"
+      [class.visible]="socialData()"
+      class="fade"
     >
       <span class="content">
         @if(socialData()?.username) {
         <div class="child-content">
           <p>{{ socialData()?.username }}</p>
-          <div #btCopy class="btn-copy" (click)="copyText(socialData()?.username)">
+          <div
+            #btCopy
+            class="btn-copy"
+            (click)="copyText(socialData()?.username)"
+          >
             <span>c</span>
           </div>
         </div>
@@ -63,29 +67,29 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
         }
       </span>
       <div class="btn-common-persistents">
-      <div
-        #btnGoToLink
-        class="btn-persistent"
-        [style]="{ height: dataView.style.height + 'px' }"
-        (click)="goToLink()"
-      >
-        <span>i</span>
-      </div>
-      <div
-        #btnClose
-        class="btn-persistent"
-        [style]="{ height: dataView.style.height + 'px' }"
-        (click)="closeDataView()"
-      >
-        <span>x</span>
-      </div>
+        <div
+          #btnGoToLink
+          class="btn-persistent"
+          [style]="{ height: dataView.style.height + 'px' }"
+          (click)="goToLink()"
+        >
+          <span>i</span>
+        </div>
+        <div
+          #btnClose
+          class="btn-persistent"
+          [style]="{ height: dataView.style.height + 'px' }"
+          (click)="closeDataView()"
+        >
+          <span>x</span>
+        </div>
       </div>
     </div>
     }
   `,
   styleUrl: './data-view.component.scss',
 })
-export class DataViewComponent implements OnChanges {
+export class DataViewComponent implements OnChanges, AfterViewInit {
   otherData = input<IData>();
   socialData = input<ISocialData | null>();
   containerIndex = input<number | null>();
@@ -112,7 +116,11 @@ export class DataViewComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.updateBtnCloseHeight();
+    this.updateBtnCloseHeight();this.addVisibleClass();
+  }
+
+  ngAfterViewInit(): void {
+    this.addVisibleClass();
   }
 
   private updateBtnCloseHeight() {
@@ -121,8 +129,16 @@ export class DataViewComponent implements OnChanges {
   }
 
   closeDataView() {
-    this.displayBlock = false;
-    this.dataViewService.containerIndex.set(null);
+    this.dataView()?.nativeElement.classList.remove('visible');
+    setTimeout(() => {
+      
+      this.displayBlock = false;
+      this.dataViewService.containerIndex.set(null);
+  }, 300);
+  }
+
+  addVisibleClass() {
+    this.dataView()?.nativeElement.classList.add('visible');
   }
 
   goToLink() {
