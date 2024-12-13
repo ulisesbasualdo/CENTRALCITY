@@ -48,6 +48,8 @@ import { DataViewService } from '@utils/data-view.service';
                   <app-data-view 
                   [socialData]=socialData
                   [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)" 
+                  class="fade"
+                  [class.visible]="isDataViewVisible(itemIndex, dataItemIndex)"
                   style="min-width: 100%;"
                   />
                   
@@ -63,7 +65,8 @@ import { DataViewService } from '@utils/data-view.service';
       <h2>Ha sucedido un error temporal, estamos trabajando en resolverlo.</h2>
     }
   `,
-  styles: `
+  styles: [
+    `
     .container{
       display: flex;
       gap: 1em;
@@ -71,24 +74,25 @@ import { DataViewService } from '@utils/data-view.service';
       flex-wrap: wrap;
       margin-top: 2rem;
     }
-  .inline-block {
-    div{
-        *{
-          display: inline-block;
-          padding-right: 1em;
-        }
+    .inline-block {
+      div{
+          *{
+            display: inline-block;
+            padding-right: 1em;
+          }
+      }
+      > * {
+        padding-block: 0.5em;
+        display: flex;
+        justify-content: space-evenly;
+      }
+      img.icon {
+        width: 2em;
+        height: auto;
+      }
     }
-    > * {
-    padding-block: 0.5em;
-    display: flex;
-    justify-content: space-evenly;
-}
-img.icon {
-    width: 2em;
-    height: auto;
-  }
-  }
-  `,
+    `
+  ],
 })
 export class TemplateLandingComponent {
   @Input() data!: IData[];
@@ -116,6 +120,10 @@ export class TemplateLandingComponent {
   formatContainerIndex(itemIndex:number,dataItemIndex:number): number {
     let result = itemIndex.toString() + dataItemIndex.toString();
     return parseInt(result);
+  }
+
+  isDataViewVisible(itemIndex: number, dataItemIndex: number): boolean {
+    return this.containerIndex() === this.formatContainerIndex(itemIndex, dataItemIndex);
   }
 
 }
