@@ -28,81 +28,64 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
     <div
       #dataView
       [class.display-block]="socialData()"
+      [class.data-view]="socialData()"
       [class.display-none]="!socialData()"
-      class="data-view"
     >
-    <span class="content">
-      @if(socialData()?.username) {
-      <p>{{ socialData()?.username }}</p>
-      } @if(socialData()?.name) {
-      <p>{{ socialData()?.name }}</p>
-      } @if(socialData()?.type) {
-      <p>{{ socialData()?.type }}</p>
-      } @if(socialData()?.link) {
-      <p>{{ socialData()?.link }}</p>}
-    </span>	
+      <span class="content">
+        @if(socialData()?.username) {
+        <div class="child-content">
+          <p>{{ socialData()?.username }}</p>
+          <div #btCopy class="btn-copy" (click)="copyText(socialData()?.username)">
+            <span>c</span>
+          </div>
+        </div>
+        } @if(socialData()?.name) {
+        <div class="child-content">
+          <p>{{ socialData()?.name }}</p>
+          <div #btCopy class="btn-copy" (click)="copyText(socialData()?.name)">
+            <span>c</span>
+          </div>
+        </div>
+        } @if(socialData()?.type) {
+        <div class="child-content">
+          <p>{{ socialData()?.type }}</p>
+          <div #btCopy class="btn-copy" (click)="copyText(socialData()?.type)">
+            <span>c</span>
+          </div>
+        </div>
+        } @if(socialData()?.link) {
+        <div class="child-content">
+          <p>{{ socialData()?.link }}</p>
+          <div #btCopy class="btn-copy" (click)="copyText(socialData()?.link)">
+            <span>c</span>
+          </div>
+        </div>
+        }
+      </span>
+      <div class="btn-common-persistents">
+      <div
+        #btnGoToLink
+        class="btn-persistent"
+        [style]="{ height: dataView.style.height + 'px' }"
+        (click)="goToLink()"
+      >
+        <span>i</span>
+      </div>
       <div
         #btnClose
-        class="btn-close"
+        class="btn-persistent"
         [style]="{ height: dataView.style.height + 'px' }"
         (click)="closeDataView()"
       >
         <span>x</span>
       </div>
+      </div>
     </div>
     }
   `,
-  styles: `
-  .btn-close {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #000000;
-    z-index: 9999;
-    font-size: 1.3em;
-    font-weight: 800;
-    background-color: #2196F3;
-    width: 2em;
-}
-  
-  .display-block {
-    display: block;
-  }
-  .display-none {
-    display: none;
-  }
-  .data-view {
-    display: flex;
-    background-color: black;
-    color: white;
-    padding-left: 1.25rem;
-    justify-content: space-between;
-  }
-
-  data-view-rounded {
-    display: flex;
-    background-color: #000000;
-    color: white;
-    border-radius: 15% 0% 15% 0%;
-    padding: 0.5em 1em;
-    position: relative;
-    top: 100%;
-    left: 46%;
-    transform: translateX(-50%);
-    z-index: 1;
-    width: 100%;
-    border-color: #2196f3;
-    border-style: solid;
-    border-width: 0.4rem;
-    .btn-close{
-        border-radius: 20% 0% 20% 0%;
-      }
-    }
-  
-  `,
+  styleUrl: './data-view.component.scss',
 })
-export class DataViewComponent implements OnChanges, AfterViewInit {
+export class DataViewComponent implements OnChanges {
   otherData = input<IData>();
   socialData = input<ISocialData | null>();
   containerIndex = input<number | null>();
@@ -125,7 +108,6 @@ export class DataViewComponent implements OnChanges, AfterViewInit {
       } else {
         this.displayBlock = false;
       }
-      // console.log(this.containerIndex(), this.dataViewService.containerIndex())
     });
   }
 
@@ -133,24 +115,22 @@ export class DataViewComponent implements OnChanges, AfterViewInit {
     this.updateBtnCloseHeight();
   }
 
-  ngAfterViewInit(): void {
-    // this.dataViewHeight.set(this.dataView()?.nativeElement.offsetHeight + 'px');
-  }
-
   private updateBtnCloseHeight() {
-    // do{
-    // this.dataViewHeight = `${this.dataView()?.nativeElement.offsetHeight}px`;
-    // this.btnCloseHeight = this.dataViewHeight;}
-    // while(!this.dataView())
-    // console.log('sucedio un cambio')
-    this.dataViewHeight = `${
-      this.dataView()?.nativeElement.offsetHeight
-    }px`;
+    this.dataViewHeight = `${this.dataView()?.nativeElement.offsetHeight}px`;
     this.btnCloseHeight = this.dataViewHeight;
   }
 
   closeDataView() {
     this.displayBlock = false;
     this.dataViewService.containerIndex.set(null);
+  }
+
+  goToLink() {
+    window.open(this.socialData()?.link, '_blank');
+  }
+
+  copyText(text: string | undefined) {
+    if (!text) return;
+    navigator.clipboard.writeText(text);
   }
 }
