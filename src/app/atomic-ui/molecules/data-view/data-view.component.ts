@@ -1,24 +1,8 @@
-import { NgStyle } from '@angular/common';
-import {
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  effect,
-  ElementRef,
-  EventEmitter,
-  inject,
-  Inject,
-  input,
-  OnChanges,
-  OnInit,
-  Renderer2,
-  signal,
-  SimpleChanges,
-  viewChild,
-} from '@angular/core';
+import { Component, effect, ElementRef, input, viewChild } from '@angular/core';
 import { DataViewService } from '@utils/data-view.service';
-import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
-
+import { LinkService } from '@utils/link.service';
+import { TextService } from '@utils/text.service';
+import { ISocialData } from 'src/app/core/interfaces/i-data';
 @Component({
   selector: 'app-data-view',
   standalone: true,
@@ -35,32 +19,28 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
         @if(socialData()?.username) {
         <div class="child-content">
           <p>{{ socialData()?.username }}</p>
-          <div
-            #btCopy
-            class="btn-copy"
-            (click)="copyText(socialData()?.username)"
-          >
+          <div class="btn-copy" (click)="copyText(socialData()?.username)">
             <span>c</span>
           </div>
         </div>
         } @if(socialData()?.name) {
         <div class="child-content">
           <p>{{ socialData()?.name }}</p>
-          <div #btCopy class="btn-copy" (click)="copyText(socialData()?.name)">
+          <div class="btn-copy" (click)="copyText(socialData()?.name)">
             <span>c</span>
           </div>
         </div>
         } @if(socialData()?.type) {
         <div class="child-content">
           <p>{{ socialData()?.type }}</p>
-          <div #btCopy class="btn-copy" (click)="copyText(socialData()?.type)">
+          <div class="btn-copy" (click)="copyText(socialData()?.type)">
             <span>c</span>
           </div>
         </div>
         } @if(socialData()?.link) {
         <div class="child-content">
           <p>{{ socialData()?.link }}</p>
-          <div #btCopy class="btn-copy" (click)="copyText(socialData()?.link)">
+          <div class="btn-copy" (click)="copyText(socialData()?.link)">
             <span>c</span>
           </div>
         </div>
@@ -89,64 +69,44 @@ import { IData, ISocialData } from 'src/app/core/interfaces/i-data';
   `,
   styleUrl: './data-view.component.scss',
 })
-export class DataViewComponent implements OnChanges, AfterViewInit {
-  otherData = input<IData>();
+export class DataViewComponent {
+  // input properties
   socialData = input<ISocialData | null>();
   containerIndex = input<number | null>();
-
+  // view child elements
   dataView = viewChild<ElementRef<HTMLDivElement>>('dataView');
-  btnClose = viewChild<ElementRef<HTMLDivElement>>('btnClose');
+  // local properties
   dataViewHeight!: string;
   btnCloseHeight!: string;
-
   displayBlock: boolean = false;
 
   constructor(
     private dataViewService: DataViewService,
-    private renderer: Renderer2
+    private linkService: LinkService,
+    private textService: TextService,
   ) {
     effect(() => {
       if (this.containerIndex() === this.dataViewService.containerIndex()) {
         this.displayBlock = true;
-        this.updateBtnCloseHeight();
       } else {
         this.displayBlock = false;
       }
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.updateBtnCloseHeight();this.addVisibleClass();
-  }
-
-  ngAfterViewInit(): void {
-    this.addVisibleClass();
-  }
-
-  private updateBtnCloseHeight() {
-    this.dataViewHeight = `${this.dataView()?.nativeElement.offsetHeight}px`;
-    this.btnCloseHeight = this.dataViewHeight;
-  }
-
   closeDataView() {
     this.dataView()?.nativeElement.classList.remove('visible');
     setTimeout(() => {
-      
       this.displayBlock = false;
       this.dataViewService.containerIndex.set(null);
-  }, 300);
-  }
-
-  addVisibleClass() {
-    this.dataView()?.nativeElement.classList.add('visible');
+    }, 300);
   }
 
   goToLink() {
-    window.open(this.socialData()?.link, '_blank');
+    this.linkService.goToLink(this.socialData()?.link);
   }
 
   copyText(text: string | undefined) {
-    if (!text) return;
-    navigator.clipboard.writeText(text);
+    this.textService.copyText(text);
   }
 }
