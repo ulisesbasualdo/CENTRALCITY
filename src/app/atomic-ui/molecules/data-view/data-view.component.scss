@@ -2,17 +2,20 @@
   display: flex;
   background-color: black;
   color: white;
-  padding: 0rem 0rem 0rem 1rem;
   justify-content: space-between;
   min-width: 100%;
-  span.content {
+  border: solid #ffde59 0.25em;
+  span.content {    
     width: 100%;
     .child-content {
       display: flex;
-      align-items: baseline;
+      padding-left: 1em;
       justify-content: space-between;
       p {
         margin-right: 1em;
+        padding-block: 0.5em;
+        max-width: 10em;
+        overflow-wrap: break-word;
       }
     }
   }
@@ -20,7 +23,6 @@
 
 .btn-common-persistents {
   display: inline-flex;
-
 }
 
 .btn-persistent {
@@ -33,7 +35,7 @@
   font-weight: 800;
   background-color: #4190ff;
   min-width: 2em;
-  border: solid #ffde59 0.25em;
+  border-left: solid #ffde59 0.25em;
   &:hover {
     background-color: #ffde59;
     color: #000000;
@@ -54,7 +56,7 @@
   background-color: #4190ff;
   min-width: 2em;
   /* padding-block: 1rem; */
-  border: solid #ffde59 0.25em;
+  border-left: solid #ffde59 0.25em;
   &:hover {
     background-color: #ffde59;
     color: #000000;
@@ -92,8 +94,6 @@ width-max-content {
   opacity: 0;
   transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
   height: 0;
-  
-  
 }
 
 .visible {
@@ -105,11 +105,9 @@ width-max-content {
   opacity: 0;
   animation: fadeOut 0.3s ease-in-out, height 0.3s ease-in-out;
   height: fit-content;
-  >
-  .btn-common-persistents {
+  > .btn-common-persistents {
     height: fit-content;
-    }
-  
+  }
 }
 
 @import 'src/app/core/styles/animations.scss';
