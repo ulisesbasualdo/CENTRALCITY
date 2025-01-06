@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   effect,
   ElementRef,
@@ -12,7 +11,6 @@ import { ParallaxHeroComponent } from '../../organisms/parallax-hero/parallax-he
 import { TitleSubtitleComponent } from '../../atoms/title-subtitle/title-subtitle.component';
 import { CardComponent } from '../../molecules/card/card.component';
 import { IData, ISocialData } from '../../../core/interfaces/i-data';
-import { IconDropdownComponent } from '../../molecules/icon-dropdown/icon-dropdown.component';
 import { DataViewComponent } from '../../molecules/data-view/data-view.component';
 import { IconImgComponent } from '../../atoms/icon-img/icon-img.component';
 import { DataViewService } from '@utils/data-view.service';
@@ -58,6 +56,7 @@ import { DataViewService } from '@utils/data-view.service';
                   #iconWrapper
                   class="icon-wrapper"
                   [class.has-overflow]="hasOverflow()"
+                  (wheel)="handleMouseWheel($event)"
                 >
                   @for(dataSocial of dataItem.social; track dataSocial; let j =
                   $index){
@@ -101,7 +100,6 @@ import { DataViewService } from '@utils/data-view.service';
         gap: 1em;
         margin-top: 2rem;
         flex-wrap: wrap;
-        /* width: 100%; */
         justify-content: flex-start;
       }
       .inline-block {
@@ -129,9 +127,9 @@ import { DataViewService } from '@utils/data-view.service';
         border-radius: 15px;
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
-        -webkit-user-select: none; // Previene la selección en Safari
-        user-select: none; // Previene la selección en general
-        touch-action: manipulation; // 
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
         &::-webkit-scrollbar {
           display: none;
         }
@@ -145,8 +143,12 @@ import { DataViewService } from '@utils/data-view.service';
         user-select: none;
         scrollbar-width: auto;
         position: relative;
+        scroll-behavior: smooth;
         @media (min-width: 768px) {
           overflow-x: auto;
+          &::-webkit-scrollbar {
+            display: none;
+          }
         }
         .icon-wrapper::-webkit-scrollbar {
           display: none;
@@ -216,6 +218,13 @@ export class TemplateLandingComponent {
 
   ngOnDestroy(): void {
     this.resizeObserver?.disconnect();
+  }
+
+  handleMouseWheel(event: WheelEvent) {
+    const container = event.currentTarget as HTMLElement;
+    event.preventDefault();
+
+    container.scrollLeft += event.deltaY;
   }
 
   private setupResizeObserver(): void {
