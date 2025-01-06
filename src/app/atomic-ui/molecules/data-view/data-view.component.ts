@@ -1,8 +1,9 @@
-import { Component, effect, ElementRef, input, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, Input, input, viewChild } from '@angular/core';
 import { DataViewService } from '@utils/data-view.service';
 import { LinkService } from '@utils/link.service';
 import { TextService } from '@utils/text.service';
 import { ISocialData } from 'src/app/core/interfaces/i-data';
+
 @Component({
   selector: 'app-data-view',
   standalone: true,
@@ -19,33 +20,44 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
         @if(socialData()?.username) {
         <div class="child-content">
           <p>{{ socialData()?.username }}</p>
+          @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.username)">
             <span>c</span>
           </div>
+          }
         </div>
         } @if(socialData()?.name) {
         <div class="child-content">
           <p>{{ socialData()?.name }}</p>
+          @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.name)">
             <span>c</span>
-          </div>
+          </div>}
         </div>
         } @if(socialData()?.type) {
         <div class="child-content">
           <p>{{ socialData()?.type }}</p>
+          
+          @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.type)">
             <span>c</span>
           </div>
+          }
         </div>
         } @if(socialData()?.link) {
         <div class="child-content">
           <p>{{ socialData()?.link }}</p>
+          
+          @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.link)">
             <span>c</span>
           </div>
+          }
         </div>
         }
       </span>
+      
+      @if(buttonsRightToData){
       <div class="btn-common-persistents">
         <div
           #btnGoToLink
@@ -64,6 +76,7 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
           <span>x</span>
         </div>
       </div>
+      }
     </div>
     }
   `,
@@ -79,6 +92,18 @@ export class DataViewComponent {
   dataViewHeight!: string;
   btnCloseHeight!: string;
   displayBlock: boolean = false;
+
+ 
+
+  
+  @Input()
+    set buttonsRightToData(value: boolean) {
+      this._buttonsRightToData = value;
+    }
+    get buttonsRightToData() {
+      return this._buttonsRightToData;
+    }
+    private _buttonsRightToData!: boolean;
 
   constructor(
     private dataViewService: DataViewService,

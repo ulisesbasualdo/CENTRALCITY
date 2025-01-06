@@ -25,6 +25,23 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
       </div>
   `,
   styleUrls: ['./card.component.scss'],
+  styles: [
+    `
+    :host {
+      display: contents;
+    }
+    @media (max-width: 768px) {
+      :host {
+        flex: 1 1 calc(50% - 2em);
+      }
+    }
+    @media (max-width: 480px) {
+      :host {
+        flex: 1 1 calc(100% - 2em);
+      }
+    }
+    `
+  ],
 })
 export class CardComponent implements AfterViewInit {
 

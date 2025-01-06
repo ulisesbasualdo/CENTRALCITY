@@ -37,6 +37,13 @@
       },
       "social": [
         {
+          "platform": "gmaps",
+          "username": "",
+          "name": "Diag. J. M. Dupuy 1550",
+          "type": "",
+          "link": "https://www.google.com/maps/dir//Diag.+J.+M.+Dupuy+1550,+B7607+Miramar,+Provincia+de+Buenos+Aires/@-38.2707156,-57.926519,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x9585108a73c73bdf:0xbe85a3bf435179d8!2m2!1d-57.844118!2d-38.2707444?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+        },
+        {
           "platform": "fb",
           "username": "@hospitalmiramar",
           "name": "Hospital Miramar",

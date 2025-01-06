@@ -36,14 +36,19 @@ import { DataViewService } from '@utils/data-view.service';
 
               >
                 <div cardBody class="inline-block">
-                  <div>
-                    @for(dataSocial of dataItem.social; track dataSocial; let j = $index){
-                      <icon-img 
-                        [srcPredefined]=dataSocial.platform
-                        [alt]=dataSocial.platform
-                        (onClick)="setDataViewAndContainer(itemIndex, dataSocial, dataItemIndex, j)"
-                      />
-                    }
+                  <div class="icon-container">
+                    <div class="icon-scroll" (mousedown)="startDragging($event)" (mousemove)="drag($event)" (mouseup)="stopDragging()" (mouseleave)="stopDragging()"
+                        (touchstart)="startDragging($event)" (touchmove)="drag($event)" (touchend)="stopDragging()">
+                      <div class="icon-wrapper">
+                        @for(dataSocial of dataItem.social; track dataSocial; let j = $index){
+                          <icon-img 
+                            [srcPredefined]=dataSocial.platform
+                            [alt]=dataSocial.platform
+                            (onClick)="setDataViewAndContainer(itemIndex, dataSocial, dataItemIndex, j)"
+                          />
+                        }
+                      </div>
+                    </div>
                   </div>
                   <app-data-view 
                   [socialData]=socialData
@@ -67,19 +72,21 @@ import { DataViewService } from '@utils/data-view.service';
   `,
   styles: [
     `
-    .container{
-      display: flex;
-      gap: 1em;
-      align-items: stretch;
-      flex-wrap: wrap;
-      margin-top: 2rem;
+    .container {
+    display: flex
+;
+    gap: 1em;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    /* width: 100%; */
+    justify-content: flex-start;
     }
     .inline-block {
-      div{
-          *{
-            display: inline-block;
-            padding-right: 1em;
-          }
+      div {
+        * {
+          display: inline-block;
+          padding-right: 1em;
+        }
       }
       > * {
         padding-block: 0.5em;
@@ -89,6 +96,73 @@ import { DataViewService } from '@utils/data-view.service';
       img.icon {
         width: 2em;
         height: auto;
+      }
+    }
+    .icon-container {
+      width: 100%;
+      overflow-x: hidden;
+    }
+    
+    .icon-scroll {
+      overflow-x: auto;
+      cursor: pointer;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    
+    .icon-wrapper {
+      display: flex;
+      gap: 1em;
+      padding: 0.5em;
+      user-select: none;
+      -webkit-user-select: none; 
+      scrollbar-width: auto;
+      width: 100%;
+      @media (min-width: 768px) {
+        overflow-x: auto;
+      }
+    }
+    
+    .nav-btn {
+      background: #4190ff;
+      border: none;
+      color: white;
+      padding: 0.5em;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &:hover {
+        background: #ffde59;
+      }
+    }
+    @media (max-width: 768px) {
+      .inline-block {
+        div {
+          * {
+            display: inline-block;
+            padding-right: 0.5em;
+          }
+        }
+        > * {
+          padding-block: 0.5em;
+          display: flex;
+          justify-content: space-evenly;
+          flex-wrap: wrap;
+        }
+        img.icon {
+          width: 2em;
+          height: auto;
+        }
+      }
+    }
+    @media (max-width: 480px) {
+      .inline-block {
       }
     }
     `
@@ -126,4 +200,48 @@ export class TemplateLandingComponent {
     return this.containerIndex() === this.formatContainerIndex(itemIndex, dataItemIndex);
   }
 
+  scrollIcons(direction: 'left' | 'right', event: Event) {
+    const container = (event.target as HTMLElement)
+      .parentElement?.querySelector('.icon-scroll') as HTMLElement;
+    const scrollAmount = 100;
+    
+    if (direction === 'left') {
+      container.scrollLeft -= scrollAmount;
+    } else {
+      container.scrollLeft += scrollAmount;
+    }
+  }
+
+  private isDragging = false;
+  private startX = 0;
+  private scrollLeft = 0;
+
+  startDragging(event: MouseEvent | TouchEvent) {
+    this.isDragging = true;
+    const container = event.currentTarget as HTMLElement;
+    this.scrollLeft = container.scrollLeft;
+    
+    if (event instanceof MouseEvent) {
+      this.startX = event.pageX - container.offsetLeft;
+    } else {
+      this.startX = event.touches[0].pageX - container.offsetLeft;
+    }
+  }
+
+  drag(event: MouseEvent | TouchEvent) {
+    if (!this.isDragging) return;
+    event.preventDefault();
+    
+    const container = event.currentTarget as HTMLElement;
+    const x = event instanceof MouseEvent ? 
+      event.pageX - container.offsetLeft : 
+      event.touches[0].pageX - container.offsetLeft;
+      
+    const walk = (x - this.startX) * 2;
+    container.scrollLeft = this.scrollLeft - walk;
+  }
+
+  stopDragging() {
+    this.isDragging = false;
+  }
 }
