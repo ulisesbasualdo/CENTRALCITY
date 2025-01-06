@@ -1,21 +1,37 @@
 .data-view {
   display: flex;
-  background-color: black;
-  color: white;
+  background-color: #ececec;
   justify-content: space-between;
-  min-width: 100%;
-  border: solid #ffde59 0.25em;
+  min-width: 100%; 
+  border-radius: 15px;
   span.content {    
     width: 100%;
     .child-content {
       display: flex;
-      padding-left: 1em;
       justify-content: space-between;
+      overflow-x: auto;
+      
+      position: relative;
+      scroll-behavior: smooth;
+      overflow-x: auto;
+      margin-inline: 1em;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      
       p {
         margin-right: 1em;
         padding-block: 0.5em;
         max-width: 10em;
         overflow-wrap: break-word;
+        white-space: nowrap;
+        
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+      .child-content::-webkit-scrollbar {
+        display: none;
       }
     }
   }

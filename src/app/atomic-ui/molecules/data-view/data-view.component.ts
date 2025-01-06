@@ -15,6 +15,7 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
       [class.data-view]="socialData()"
       [class.visible]="socialData()"
       class="fade"
+      
     >
       <span class="content">
         @if(socialData()?.username) {
@@ -45,8 +46,11 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
           }
         </div>
         } @if(socialData()?.link) {
-        <div class="child-content">
-          <p>{{ socialData()?.link }}</p>
+        <div class="child-content"
+        
+      >
+          <p (wheel)="handleMouseWheel($event)"
+          >{{ socialData()?.link }}</p>
           
           @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.link)">
@@ -133,5 +137,16 @@ export class DataViewComponent {
 
   copyText(text: string | undefined) {
     this.textService.copyText(text);
+  }
+
+  handleMouseWheel(event: WheelEvent) {
+    const container = event.currentTarget as HTMLElement;
+    event.preventDefault();
+    
+    // Asegurar que el scroll se aplique al contenedor padre
+    const parentElement = container.parentElement;
+    if (parentElement) {
+      parentElement.scrollLeft += event.deltaY;
+    }
   }
 }
