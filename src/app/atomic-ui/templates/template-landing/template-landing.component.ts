@@ -107,6 +107,7 @@ import { DataViewService } from '@utils/data-view.service';
           padding-block: 0.5em;
           display: flex;
           justify-content: space-evenly;
+          flex-wrap: wrap;
         }
         img.icon {
           width: 2em;

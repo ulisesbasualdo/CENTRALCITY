@@ -1,13 +1,21 @@
-import { Component, effect, ElementRef, Input, input, viewChild } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  Input,
+  input,
+  viewChild,
+} from '@angular/core';
 import { DataViewService } from '@utils/data-view.service';
 import { LinkService } from '@utils/link.service';
 import { TextService } from '@utils/text.service';
 import { ISocialData } from 'src/app/core/interfaces/i-data';
+import { BtnComponent } from '../../atoms/btn/btn.component';
 
 @Component({
   selector: 'app-data-view',
   standalone: true,
-  imports: [],
+  imports: [BtnComponent],
   template: `
     @if(displayBlock){
     <div
@@ -15,7 +23,6 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
       [class.data-view]="socialData()"
       [class.visible]="socialData()"
       class="fade"
-      
     >
       <span class="content">
         @if(socialData()?.username) {
@@ -33,12 +40,13 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
           @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.name)">
             <span>c</span>
-          </div>}
+          </div>
+          }
         </div>
         } @if(socialData()?.type) {
         <div class="child-content">
           <p>{{ socialData()?.type }}</p>
-          
+
           @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.type)">
             <span>c</span>
@@ -46,12 +54,11 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
           }
         </div>
         } @if(socialData()?.link) {
-        <div class="child-content"
-        
-      >
-          <p (wheel)="handleMouseWheel($event)"
-          >{{ socialData()?.link }}</p>
-          
+        <div class="child-content">
+          <p (wheel)="handleMouseWheel($event, true)">
+            {{ socialData()?.link }}
+          </p>
+
           @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.link)">
             <span>c</span>
@@ -60,7 +67,7 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
         </div>
         }
       </span>
-      
+
       @if(buttonsRightToData){
       <div class="btn-common-persistents">
         <div
@@ -82,6 +89,20 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
       </div>
       }
     </div>
+      <div class="btn-actions" (wheel)="handleMouseWheel($event)">
+        <app-btn text="Copiar Nombre" 
+          (onClick)="copyText(socialData()?.name)"
+        />
+        <app-btn text="Copiar Usuario" 
+          (onClick)="copyText(socialData()?.username)"
+        />
+        <app-btn text="Copiar Link" 
+          (onClick)="copyText(socialData()?.link)"
+        />
+        <app-btn text="Ir al Link" 
+          (onClick)="goToLink()"
+        />
+      </div>
     }
   `,
   styleUrl: './data-view.component.scss',
@@ -97,22 +118,19 @@ export class DataViewComponent {
   btnCloseHeight!: string;
   displayBlock: boolean = false;
 
- 
-
-  
   @Input()
-    set buttonsRightToData(value: boolean) {
-      this._buttonsRightToData = value;
-    }
-    get buttonsRightToData() {
-      return this._buttonsRightToData;
-    }
-    private _buttonsRightToData!: boolean;
+  set buttonsRightToData(value: boolean) {
+    this._buttonsRightToData = value;
+  }
+  get buttonsRightToData() {
+    return this._buttonsRightToData;
+  }
+  private _buttonsRightToData!: boolean;
 
   constructor(
     private dataViewService: DataViewService,
     private linkService: LinkService,
-    private textService: TextService,
+    private textService: TextService
   ) {
     effect(() => {
       if (this.containerIndex() === this.dataViewService.containerIndex()) {
@@ -132,21 +150,23 @@ export class DataViewComponent {
   }
 
   goToLink() {
-    this.linkService.goToLink(this.socialData()?.link);
+    this.linkService.goToLink(this.socialData()?.link, false);
   }
 
   copyText(text: string | undefined) {
     this.textService.copyText(text);
   }
 
-  handleMouseWheel(event: WheelEvent) {
+  handleMouseWheel(event: WheelEvent, toParent: boolean = false) {
     const container = event.currentTarget as HTMLElement;
     event.preventDefault();
-    
-    // Asegurar que el scroll se aplique al contenedor padre
-    const parentElement = container.parentElement;
-    if (parentElement) {
-      parentElement.scrollLeft += event.deltaY;
+    if (toParent) {
+      const parentElement = container.parentElement;
+      if (parentElement) {
+        parentElement.scrollLeft += event.deltaY;
+      }
+    } else {
+    container.scrollLeft += event.deltaY;
     }
   }
 }
