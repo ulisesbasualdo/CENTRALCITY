@@ -5,17 +5,19 @@ import {
   Input,
   input,
   viewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { DataViewService } from '@utils/data-view.service';
 import { LinkService } from '@utils/link.service';
 import { TextService } from '@utils/text.service';
 import { ISocialData } from 'src/app/core/interfaces/i-data';
 import { BtnComponent } from '../../atoms/btn/btn.component';
+import { ScrolleableContainerDirective } from '../../utils/directives/scrolleable-container.directive';
 
 @Component({
   selector: 'app-data-view',
   standalone: true,
-  imports: [BtnComponent],
+  imports: [BtnComponent, ScrolleableContainerDirective],
   template: `
     @if(displayBlock){
     <div
@@ -54,10 +56,8 @@ import { BtnComponent } from '../../atoms/btn/btn.component';
           }
         </div>
         } @if(socialData()?.link) {
-        <div class="child-content">
-          <p (wheel)="handleMouseWheel($event, true)">
-            {{ socialData()?.link }}
-          </p>
+        <div class="child-content" appScrolleable [showScrollBar]="false">
+          <p>{{ socialData()?.link }}</p>
 
           @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.link)">
@@ -89,7 +89,12 @@ import { BtnComponent } from '../../atoms/btn/btn.component';
       </div>
       }
     </div>
-      <div class="btn-actions" (wheel)="handleMouseWheel($event)">
+      <div 
+      class="btn-actions" 
+      appScrolleable
+      [disableScroll]="!hasScroll()"
+      [class.noScroll]="!hasScroll()"
+      >
         <app-btn text="Copiar Nombre" 
           (onClick)="copyText(socialData()?.name)"
         />
@@ -111,6 +116,7 @@ export class DataViewComponent {
   // input properties
   socialData = input<ISocialData | null>();
   containerIndex = input<number | null>();
+  hasScroll = input<boolean>(true);
   // view child elements
   dataView = viewChild<ElementRef<HTMLDivElement>>('dataView');
   // local properties
@@ -155,18 +161,5 @@ export class DataViewComponent {
 
   copyText(text: string | undefined) {
     this.textService.copyText(text);
-  }
-
-  handleMouseWheel(event: WheelEvent, toParent: boolean = false) {
-    const container = event.currentTarget as HTMLElement;
-    event.preventDefault();
-    if (toParent) {
-      const parentElement = container.parentElement;
-      if (parentElement) {
-        parentElement.scrollLeft += event.deltaY;
-      }
-    } else {
-    container.scrollLeft += event.deltaY;
-    }
   }
 }

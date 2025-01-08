@@ -127,21 +127,24 @@ width-max-content {
 .btn-actions {
   display: flex;
   justify-content: space-between;
-  overflow-x: auto;
   position: relative;
-  scroll-behavior: smooth;
   margin-block: 1em;
   gap: 1em;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  @media (min-width: 768px) {
-    @supports not (scrollbar-with: thin) {
-      scrollbar-width: thin;
-      padding-bottom: .75em;
-    }
-  }
   
+  &.noScroll {
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 @import 'src/app/core/styles/animations.scss';

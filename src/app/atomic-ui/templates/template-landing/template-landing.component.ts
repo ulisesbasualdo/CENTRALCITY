@@ -14,6 +14,7 @@ import { IData, ISocialData } from '../../../core/interfaces/i-data';
 import { DataViewComponent } from '../../molecules/data-view/data-view.component';
 import { IconImgComponent } from '../../atoms/icon-img/icon-img.component';
 import { DataViewService } from '@utils/data-view.service';
+import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-container.directive';
 
 @Component({
   selector: 'app-template-landing',
@@ -24,6 +25,7 @@ import { DataViewService } from '@utils/data-view.service';
     CardComponent,
     DataViewComponent,
     IconImgComponent,
+    ScrolleableContainerDirective
   ],
   template: `
     @if(data){
@@ -55,8 +57,7 @@ import { DataViewService } from '@utils/data-view.service';
                 <div
                   #iconWrapper
                   class="icon-wrapper"
-                  [class.has-overflow]="hasOverflow()"
-                  (wheel)="handleMouseWheel($event)"
+                  appScrolleable
                 >
                   @for(dataSocial of dataItem.social; track dataSocial; let j =
                   $index){
@@ -142,18 +143,7 @@ import { DataViewService } from '@utils/data-view.service';
         padding: 0.5em;
         -webkit-user-select: none;
         user-select: none;
-        scrollbar-width: auto;
         position: relative;
-        scroll-behavior: smooth;
-        @media (min-width: 768px) {
-          overflow-x: auto;
-          &::-webkit-scrollbar {
-            display: none;
-          }
-        }
-        .icon-wrapper::-webkit-scrollbar {
-          display: none;
-        }
       }
       icon-img {
         display: contents;
