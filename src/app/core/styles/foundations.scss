@@ -13,7 +13,7 @@ body {
 }
 
 section {
-    margin-inline: 5em;
+  margin-inline: 5em;
 }
 
 h1 {
@@ -51,7 +51,8 @@ button {
   scrollbar-width: none;
   -ms-overflow-style: none;
   &.with-space-in-bottom {
-    height: 4em;}
+    height: 4em;
+  }
   &::-webkit-scrollbar {
     display: none;
   }
@@ -59,40 +60,38 @@ button {
   @media (min-width: 768px) {
     &.show-scroll {
       scrollbar-width: auto;
-      
+
       &::-webkit-scrollbar {
         display: block;
         height: 12px;
       }
-      
+
       &::-webkit-scrollbar-track {
         background: #e0e0e0;
         border-radius: 10px;
       }
-      
+
       &::-webkit-scrollbar-thumb {
         background: #4190ff;
         border-radius: 10px;
-        
+
         &:hover {
           background: #2979ff;
         }
       }
-      
+
       &::-webkit-scrollbar-button {
         display: none;
       }
-
-      
     }
     &.noBar {
       scrollbar-width: none;
-      }
     }
-
+  }
 }
 
-@media(max-width: 768px) {
-  .scrolleable-container{
-overflow-x: auto;
-  }}
+@media (max-width: 768px) {
+  .scrolleable-container {
+    overflow-x: auto;
+  }
+}
