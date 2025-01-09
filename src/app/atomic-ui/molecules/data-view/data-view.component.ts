@@ -56,8 +56,11 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
           }
         </div>
         } @if(socialData()?.link) {
-        <div class="child-content" appScrolleable [showScrollBar]="false">
-          <p>{{ socialData()?.link }}</p>
+        <div class="child-content" >
+          <p 
+          appScrolleable 
+                [showScrollBar]="false"
+          >{{ socialData()?.link }}</p>
 
           @if(buttonsRightToData){
           <div class="btn-copy" (click)="copyText(socialData()?.link)">
@@ -66,6 +69,7 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
           }
         </div>
         }
+
       </span>
 
       @if(buttonsRightToData){
@@ -92,6 +96,7 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
       <div 
       class="btn-actions" 
       appScrolleable
+      [spaceInBottom]="true"
       [disableScroll]="!hasScroll()"
       [class.noScroll]="!hasScroll()"
       >

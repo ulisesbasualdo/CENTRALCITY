@@ -46,18 +46,12 @@ import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-con
             <div class="icon-container">
               <div
                 class="icon-scroll"
-                (mousedown)="startDragging($event)"
-                (mousemove)="drag($event)"
-                (mouseup)="stopDragging()"
-                (mouseleave)="stopDragging()"
-                (touchstart)="startDragging($event)"
-                (touchmove)="drag($event)"
-                (touchend)="stopDragging()"
+                appScrolleable
+                [spaceInBottom]="true"
               >
                 <div
                   #iconWrapper
                   class="icon-wrapper"
-                  appScrolleable
                 >
                   @for(dataSocial of dataItem.social; track dataSocial; let j =
                   $index){
@@ -117,24 +111,15 @@ import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-con
       }
       .icon-container {
         width: 100%;
-        overflow-x: hidden;
       }
 
       .icon-scroll {
-        overflow-x: auto;
         cursor: pointer;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        background-color: #ececec;
+        // background-color: #ececec;
         border-radius: 15px;
         -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
         -webkit-user-select: none;
         user-select: none;
-        touch-action: manipulation;
-        &::-webkit-scrollbar {
-          display: none;
-        }
       }
 
       .icon-wrapper {

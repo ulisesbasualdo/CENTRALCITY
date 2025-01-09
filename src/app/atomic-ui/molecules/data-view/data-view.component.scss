@@ -13,9 +13,6 @@
       position: relative;
       scroll-behavior: smooth;
       margin-inline: 1em;
-      &::-webkit-scrollbar {
-        display: none;
-      }
 
       p {
         margin-right: 1em;
@@ -24,9 +21,6 @@
         overflow-wrap: break-word;
         white-space: nowrap;
 
-        &::-webkit-scrollbar {
-          display: none;
-        }
       }
       .child-content::-webkit-scrollbar {
         display: none;
@@ -107,7 +101,8 @@ width-max-content {
 .fade {
   opacity: 0;
   transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-  height: 0;
+  
+  height: 6em;
 }
 
 .visible {
@@ -134,7 +129,6 @@ width-max-content {
   &.noScroll {
     justify-content: center;
     flex-wrap: wrap;
-    overflow: hidden;
     padding-bottom: 0;
   }
 }

@@ -12,8 +12,15 @@ export class ScrolleableContainerDirective {
   @Input() showOnHover = true;
   @Input() disableScroll = false;
   @Input() showScrollBar = true;
+  @Input() set spaceInBottom(value: boolean) {
+    if (value) {
+      this.el.nativeElement.classList.add('with-space-in-bottom');
+    } else {
+      this.el.nativeElement.classList.remove('with-space-in-bottom');
+    }
+  }
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef<HTMLElement>) {
     this.setupStyles();
   }
 
