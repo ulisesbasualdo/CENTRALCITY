@@ -1,0 +1,83 @@
+{
+  "id": "bomberos",
+  "name": "Bomberos",
+  "note": "",
+  "description": "Bomberos en la ciudad de Miramar",
+  "dataItems": [
+    {
+      "name": "Bomberos Miramar",
+      "location": {
+        "address": "Calle 17 1660",
+        "googleMapsLink": "https://g.co/kgs/hfSbTdN"
+      },
+      "phone": {
+        "number": "02291 42-1611",
+        "link": "tel:+542291421611"
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        }
+      ],
+      "newCard": false
+    }
+  ]
+}

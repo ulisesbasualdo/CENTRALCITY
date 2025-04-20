@@ -1,0 +1,83 @@
+{
+  "id": "electricidad",
+  "name": "Problemas Eléctricos",
+  "note": "",
+  "description": "Problemas Eléctricos en la ciudad de Miramar",
+  "dataItems": [
+    {
+      "name": "EDEA Miramar",
+      "location": {
+        "address": "C. 32 490",
+        "googleMapsLink": "https://g.co/kgs/9n4L1jG"
+      },
+      "phone": {
+        "number": "02291 42-1258",
+        "link": "tel:+542291421258"
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        }
+      ],
+      "newCard": false
+    }
+  ]
+}

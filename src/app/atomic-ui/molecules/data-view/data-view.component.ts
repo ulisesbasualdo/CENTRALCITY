@@ -5,7 +5,6 @@ import {
   Input,
   input,
   viewChild,
-  ViewEncapsulation,
 } from '@angular/core';
 import { DataViewService } from '@utils/data-view.service';
 import { LinkService } from '@utils/link.service';
@@ -19,103 +18,179 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
   standalone: true,
   imports: [BtnComponent, ScrolleableContainerDirective],
   template: `
-    @if(displayBlock){
-    <div
-      #dataView
-      [class.data-view]="socialData()"
-      [class.visible]="socialData()"
-      class="fade"
-    >
-      <span class="content">
-        @if(socialData()?.username) {
-        <div class="child-content">
-          <p>{{ socialData()?.username }}</p>
-          @if(buttonsRightToData){
-          <div class="btn-copy" (click)="copyText(socialData()?.username)">
-            <span>c</span>
-          </div>
-          }
-        </div>
-        } @if(socialData()?.name) {
-        <div class="child-content">
-          <p>{{ socialData()?.name }}</p>
-          @if(buttonsRightToData){
-          <div class="btn-copy" (click)="copyText(socialData()?.name)">
-            <span>c</span>
-          </div>
-          }
-        </div>
-        } @if(socialData()?.type) {
-        <div class="child-content">
-          <p>{{ socialData()?.type }}</p>
-
-          @if(buttonsRightToData){
-          <div class="btn-copy" (click)="copyText(socialData()?.type)">
-            <span>c</span>
-          </div>
-          }
-        </div>
-        } @if(socialData()?.link) {
-        <div class="child-content" >
-          <p 
-          appScrolleable 
-                [showScrollBar]="false"
-          >{{ socialData()?.link }}</p>
-
-          @if(buttonsRightToData){
-          <div class="btn-copy" (click)="copyText(socialData()?.link)">
-            <span>c</span>
-          </div>
-          }
-        </div>
-        }
-
-      </span>
-
-      @if(buttonsRightToData){
-      <div class="btn-common-persistents">
-        <div
-          #btnGoToLink
-          class="btn-persistent"
-          [style]="{ height: dataView.style.height + 'px' }"
-          (click)="goToLink()"
-        >
-          <span>i</span>
-        </div>
-        <div
-          #btnClose
-          class="btn-persistent"
-          [style]="{ height: dataView.style.height + 'px' }"
-          (click)="closeDataView()"
-        >
-          <span>x</span>
-        </div>
-      </div>
-      }
-    </div>
-      <div 
-      class="btn-actions" 
-      appScrolleable
-      [spaceInBottom]="true"
-      [disableScroll]="!hasScroll()"
-      [class.noScroll]="!hasScroll()"
+    @if (displayBlock) {
+      <div
+        #dataView
+        [class.data-view]="socialData()"
+        [class.visible]="socialData()"
+        class="fade"
       >
-        <app-btn text="Copiar Nombre" 
-          (onClick)="copyText(socialData()?.name)"
-        />
-        <app-btn text="Copiar Usuario" 
-          (onClick)="copyText(socialData()?.username)"
-        />
-        <app-btn text="Copiar Link" 
+        <span class="content">
+          @if (socialData()?.username) {
+            <div class="child-content">
+              <p>{{ socialData()?.username }}</p>
+              @if (buttonsRightToData) {
+                <div
+                  class="btn-copy"
+                  (click)="copyText(socialData()?.username)"
+                >
+                  <span>c</span>
+                </div>
+              }
+            </div>
+          }
+          @if (socialData()?.name) {
+            <div class="child-content">
+              <p>{{ socialData()?.name }}</p>
+              @if (buttonsRightToData) {
+                <div class="btn-copy" (click)="copyText(socialData()?.name)">
+                  <span>c</span>
+                </div>
+              }
+            </div>
+          }
+          @if (socialData()?.type) {
+            <div class="child-content">
+              <p>{{ socialData()?.type }}</p>
+
+              @if (buttonsRightToData) {
+                <div class="btn-copy" (click)="copyText(socialData()?.type)">
+                  <span>c</span>
+                </div>
+              }
+            </div>
+          }
+          @if (socialData()?.link) {
+            <div class="child-content">
+              <p appScrolleable [showScrollBar]="false">
+                {{ socialData()?.link }}
+              </p>
+
+              @if (buttonsRightToData) {
+                <div class="btn-copy" (click)="copyText(socialData()?.link)">
+                  <span>c</span>
+                </div>
+              }
+            </div>
+          }
+        </span>
+
+        @if (buttonsRightToData) {
+          <div class="btn-common-persistents">
+            <div
+              #btnGoToLink
+              class="btn-persistent"
+              [style]="{ height: dataView.style.height + 'px' }"
+              (click)="goToLink()"
+            >
+              <span>i</span>
+            </div>
+            <div
+              #btnClose
+              class="btn-persistent"
+              [style]="{ height: dataView.style.height + 'px' }"
+              (click)="closeDataView()"
+            >
+              <span>x</span>
+            </div>
+          </div>
+        }
+      </div>
+      <div
+        class="btn-actions"
+        appScrolleable
+        [spaceInBottom]="true"
+        [disableScroll]="!hasScroll()"
+        [class.noScroll]="!hasScroll()"
+      >
+        <app-btn text="Ir al Link" color="green" (onClick)="goToLink()" />
+        <app-btn
+          text="Copiar Link"
+          color="blue"
+          [disabled]="!socialData()?.link || socialData()?.link?.length === 0"
           (onClick)="copyText(socialData()?.link)"
         />
-        <app-btn text="Ir al Link" 
-          (onClick)="goToLink()"
+        @if (socialData()?.type === 'email') {
+          <app-btn
+            text="Copiar Email"
+            color="blue"
+            [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
+            (onClick)="copyText(socialData()?.name)"
+          />
+        } @else if (socialData()?.platform === 'phone') {
+          <app-btn
+            text="Copiar Teléfono"
+            color="blue"
+            [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
+            (onClick)="copyText(socialData()?.name)"
+          />
+        } @else if (socialData()?.platform === 'wp') {
+          <app-btn
+            text="Copiar Teléfono"
+            color="blue"
+            [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
+            (onClick)="copyText(socialData()?.name)"
+          />
+        } @else if (socialData()?.platform === 'gmaps') {
+          <app-btn
+            text="Copiar Dirección"
+            color="blue"
+            [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
+            (onClick)="copyText(socialData()?.name)"
+          />
+        } @else {
+          <app-btn
+            text="Copiar Nombre"
+            color="blue"
+            [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
+            (onClick)="copyText(socialData()?.name)"
+          />
+        }
+        <app-btn
+          text="Copiar Usuario"
+          color="blue"
+          [disabled]="
+            !socialData()?.username || socialData()?.username?.length === 0
+          "
+          (onClick)="copyText(socialData()?.username)"
         />
       </div>
     }
   `,
-  styleUrl: './data-view.component.scss',
+  styles: `
+    .data-view {
+      display: flex;
+      background-color: #ececec;
+      justify-content: space-between;
+      min-width: 100%;
+      border-radius: 15px;
+      span.content {
+        width: 100%;
+        .child-content {
+          display: flex;
+          justify-content: space-between;
+          overflow-x: auto;
+          position: relative;
+          scroll-behavior: smooth;
+          margin-inline: 1em;
+
+          p {
+            margin-right: 1em;
+            padding-block: 0.5em;
+            max-width: 10em;
+            overflow-wrap: break-word;
+            white-space: nowrap;
+          }
+          .child-content::-webkit-scrollbar {
+            display: none;
+          }
+        }
+      }
+    }
+    .btn-common-persistents {
+      display: inline-flex;
+    }
+  `,
 })
 export class DataViewComponent {
   // input properties

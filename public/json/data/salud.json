@@ -53,29 +53,40 @@
         {
           "platform": "ig",
           "username": "@hospitalmiramar",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "@hospitalmiramar",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
-          "username": "Hospital Miramar",
-          "link": ""
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "hospitalmiramar",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "Hospital Miramar Empleos",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Hospital Municipal Dr. Marino Cassano",
@@ -120,27 +131,37 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
       ]
     },
@@ -186,29 +207,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Salita Parquemar, Miramar",
@@ -252,29 +284,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Centro De Atención primaria De Salud Las Flores",
@@ -318,29 +361,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Caps Belgrano",
@@ -384,29 +438,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     }
   ]
 }

@@ -18,6 +18,12 @@ export class DataService {
     return this._http.get<IData>('json/data/remises.json');
   }
 
+  fetchPoliciasData(): Observable<IData> {
+    return this._http.get<IData>('json/data/policia.json');
+  }
+
+  
+
   getData(): Observable<IData[]> {
     return forkJoin(
       [

@@ -42,7 +42,7 @@ export interface IDataItem {
 }
 
 export interface ISocialData {
-  platform: 'fb' | 'ig' | 'x' | 'yt' | 'li' | 'tt' | 'gmaps' | null;
+  platform: 'fb' | 'ig' | 'x' | 'yt' | 'li' | 'tt' | 'gmaps' | 'phone' | 'wp' | null;
   username: string;
   name: string;
   type: string;

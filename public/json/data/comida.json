@@ -1,0 +1,158 @@
+{
+  "id": "comida",
+  "name": "Comida",
+  "note": "",
+  "description": "Comida en la ciudad de Miramar",
+  "dataItems": [
+    {
+      "name": "Le Dîner Pizzas",
+      "location": {
+        "address": "Av 26 879",
+        "googleMapsLink": "https://g.co/kgs/XKJZ9sN"
+      },
+      "phone": {
+        "number": "02291 43-1244",
+        "link": "tel:+542291431244"
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        }
+      ],
+      "newCard": false
+    },
+    {
+      "name": "Pizzería Los Rodríguez",
+      "location": {
+        "address": "Av 26 889",
+        "googleMapsLink": "https://g.co/kgs/qzG26F8"
+      },
+      "phone": {
+        "number": "02291 42-2985",
+        "link": "tel:+542291422985"
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        }
+      ],
+      "newCard": false
+    }
+  ]
+}

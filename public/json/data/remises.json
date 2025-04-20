@@ -46,29 +46,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Remis Sur",
@@ -113,27 +124,37 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
       ]
     },
@@ -179,29 +200,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Remise Plaza panda",
@@ -245,29 +277,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Remiseria Miramar",
@@ -311,29 +354,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Remises Danny",
@@ -377,29 +431,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Hola Remisse",
@@ -443,29 +508,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Centro Taxi",
@@ -509,29 +585,40 @@
         {
           "platform": "ig",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     },
     {
       "name": "Mitre Remisse",
@@ -568,24 +655,33 @@
         {
           "platform": "x",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "yt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "tt",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         },
         {
           "platform": "li",
           "username": "",
-          "link": ""
+          "link": "",
+          "name": "",
+          "type": ""
         }
-      ]
+      ],
+      "newCard": false
     }
   ]
 }
