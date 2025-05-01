@@ -4,9 +4,9 @@ import { TitleSubtitleComponent } from '../../atoms/title-subtitle/title-subtitl
 import { CardComponent } from '../../molecules/card/card.component';
 import { IData, ISocialData } from '../../../core/interfaces/i-data';
 import { DataViewComponent } from '../../molecules/data-view/data-view.component';
-import { IconImgComponent } from '../../atoms/icon-img/icon-img.component';
 import { DataViewService } from '@utils/data-view.service';
 import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-container.directive';
+import { IconImgComponent } from '../../atoms/icon-img/icon-img.component';
 
 @Component({
   selector: 'app-template-landing',
@@ -16,8 +16,8 @@ import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-con
     TitleSubtitleComponent,
     CardComponent,
     DataViewComponent,
-    IconImgComponent,
     ScrolleableContainerDirective,
+    IconImgComponent,
   ],
   template: `
     @if (data) {
@@ -37,10 +37,11 @@ import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-con
                     <div class="icon-scroll" appScrolleable [spaceInBottom]="true">
                       <div #iconWrapper class="icon-wrapper">
                         @for (dataSocial of dataItem.social; track dataSocial; let j = $index) {
-                          <icon-img
+                          <app-icon-img
+                            [pointer]="true"
                             [srcPredefined]="dataSocial.platform"
                             [alt]="dataSocial.platform"
-                            (onClick)="setDataViewAndContainer(itemIndex, dataSocial, dataItemIndex, j)" />
+                            (clickEvent)="setDataViewAndContainer(itemIndex, dataSocial, dataItemIndex, j)" />
                         }
                       </div>
                     </div>
@@ -48,8 +49,6 @@ import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-con
                   <app-data-view
                     [socialData]="socialData"
                     [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)"
-                    class="fade"
-                    [class.visible]="isDataViewVisible(itemIndex, dataItemIndex)"
                     style="min-width: 100%;" />
                 </div>
                 <div cardFooter></div>
@@ -104,7 +103,7 @@ import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-con
         user-select: none;
         position: relative;
       }
-      icon-img {
+      app-icon-img {
         display: contents;
       }
 
@@ -190,12 +189,15 @@ export class TemplateLandingComponent implements OnDestroy {
     this.resizeObserver.observe(this.iconWrapper()!.nativeElement);
   }
 
-  setDataViewAndContainer(itemIndex: number, data: ISocialData, dataItemIndex: number) {
-    this.dataViewService.contentSocial.set(data);
+  setDataViewAndContainer(itemIndex: number, data: ISocialData, dataItemIndex: number, contentIndex: number) {
     const formatedContainerIndex = this.formatContainerIndex(itemIndex, dataItemIndex);
 
-    this.dataViewService.containerIndex.set(formatedContainerIndex);
+    // Actualizar el servicio con todos los parámetros correctos
+    this.dataViewService.setDataViewAndContainer(data, formatedContainerIndex, contentIndex);
+
+    // Actualizar los signals locales
     this.containerIndex.set(formatedContainerIndex);
+    this.contentIndex.set(contentIndex);
   }
 
   formatContainerIndex(itemIndex: number, dataItemIndex: number): number {

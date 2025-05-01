@@ -1,9 +1,12 @@
 .data-view {
-  display: flex;
+  display: none;
   background-color: #ececec;
   justify-content: space-between;
   min-width: 100%;
   border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  margin-top: 1em;
   span.content {
     width: 100%;
     .child-content {
@@ -26,6 +29,12 @@
       }
     }
   }
+}
+
+.visible {
+  display: flex !important;
+  opacity: 1;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .btn-common-persistents {
@@ -128,6 +137,7 @@ width-max-content {
   position: relative;
   margin-block: 1em;
   gap: 1em;
+  animation: fadeIn 0.3s ease-in-out;
 
   &.noScroll {
     justify-content: center;
@@ -145,3 +155,21 @@ width-max-content {
 }
 
 @import 'src/app/core/styles/animations.scss';
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

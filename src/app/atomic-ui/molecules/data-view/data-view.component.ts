@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef, Input, input, viewChild } from '@angular/core';
+import { Component, ElementRef, Input, input, viewChild } from '@angular/core';
 import { DataViewService } from '@utils/data-view.service';
 import { LinkService } from '@utils/link.service';
 import { TextService } from '@utils/text.service';
@@ -11,74 +11,74 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
   standalone: true,
   imports: [BtnComponent, ScrolleableContainerDirective],
   template: `
-    @if (displayBlock) {
-      <div #dataView [class.data-view]="socialData()" [class.visible]="socialData()" class="fade">
-        <span class="content">
-          @if (socialData()?.username) {
-            <div class="child-content">
-              <p>{{ socialData()?.username }}</p>
-              @if (buttonsRightToData) {
-                <div class="btn-copy" (click)="copyText(socialData()?.username)">
-                  <span>c</span>
-                </div>
-              }
-            </div>
-          }
-          @if (socialData()?.name) {
-            <div class="child-content">
-              <p>{{ socialData()?.name }}</p>
-              @if (buttonsRightToData) {
-                <div class="btn-copy" (click)="copyText(socialData()?.name)">
-                  <span>c</span>
-                </div>
-              }
-            </div>
-          }
-          @if (socialData()?.type) {
-            <div class="child-content">
-              <p>{{ socialData()?.type }}</p>
-
-              @if (buttonsRightToData) {
-                <div class="btn-copy" (click)="copyText(socialData()?.type)">
-                  <span>c</span>
-                </div>
-              }
-            </div>
-          }
-          @if (socialData()?.link) {
-            <div class="child-content">
-              <p appScrolleable [showScrollBar]="false">
-                {{ socialData()?.link }}
-              </p>
-
-              @if (buttonsRightToData) {
-                <div class="btn-copy" (click)="copyText(socialData()?.link)">
-                  <span>c</span>
-                </div>
-              }
-            </div>
-          }
-        </span>
-
-        @if (buttonsRightToData) {
-          <div class="btn-common-persistents">
-            <div
-              #btnGoToLink
-              class="btn-persistent"
-              [style]="{ height: dataView.style.height + 'px' }"
-              (click)="goToLink()">
-              <span>i</span>
-            </div>
-            <div
-              #btnClose
-              class="btn-persistent"
-              [style]="{ height: dataView.style.height + 'px' }"
-              (click)="closeDataView()">
-              <span>x</span>
-            </div>
+    <div #dataView class="data-view" [class.visible]="shouldShow()">
+      <span class="content">
+        @if (socialData()?.username) {
+          <div class="child-content">
+            <p>{{ socialData()?.username }}</p>
+            @if (buttonsRightToData) {
+              <div class="btn-copy" (click)="copyText(socialData()?.username)">
+                <span>c</span>
+              </div>
+            }
           </div>
         }
-      </div>
+        @if (socialData()?.name) {
+          <div class="child-content">
+            <p>{{ socialData()?.name }}</p>
+            @if (buttonsRightToData) {
+              <div class="btn-copy" (click)="copyText(socialData()?.name)">
+                <span>c</span>
+              </div>
+            }
+          </div>
+        }
+        @if (socialData()?.type) {
+          <div class="child-content">
+            <p>{{ socialData()?.type }}</p>
+
+            @if (buttonsRightToData) {
+              <div class="btn-copy" (click)="copyText(socialData()?.type)">
+                <span>c</span>
+              </div>
+            }
+          </div>
+        }
+        @if (socialData()?.link) {
+          <div class="child-content">
+            <p appScrolleable [showScrollBar]="false">
+              {{ socialData()?.link }}
+            </p>
+
+            @if (buttonsRightToData) {
+              <div class="btn-copy" (click)="copyText(socialData()?.link)">
+                <span>c</span>
+              </div>
+            }
+          </div>
+        }
+      </span>
+
+      @if (buttonsRightToData) {
+        <div class="btn-common-persistents">
+          <div
+            #btnGoToLink
+            class="btn-persistent"
+            [style]="{ height: dataView.style.height + 'px' }"
+            (click)="goToLink()">
+            <span>i</span>
+          </div>
+          <div
+            #btnClose
+            class="btn-persistent"
+            [style]="{ height: dataView.style.height + 'px' }"
+            (click)="closeDataView()">
+            <span>x</span>
+          </div>
+        </div>
+      }
+    </div>
+    @if (shouldShow()) {
       <div
         class="btn-actions"
         appScrolleable
@@ -132,11 +132,12 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
   `,
   styles: `
     .data-view {
-      display: flex;
+      display: none;
       background-color: #ececec;
       justify-content: space-between;
       min-width: 100%;
       border-radius: 15px;
+      transition: all 0.3s ease-in-out;
       span.content {
         width: 100%;
         .child-content {
@@ -160,6 +161,12 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
         }
       }
     }
+
+    .visible {
+      display: flex;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
     .btn-common-persistents {
       display: inline-flex;
     }
@@ -172,10 +179,6 @@ export class DataViewComponent {
   hasScroll = input<boolean>(true);
   // view child elements
   dataView = viewChild<ElementRef<HTMLDivElement>>('dataView');
-  // local properties
-  dataViewHeight!: string;
-  btnCloseHeight!: string;
-  displayBlock: boolean = false;
 
   @Input()
   set buttonsRightToData(value: boolean) {
@@ -187,25 +190,21 @@ export class DataViewComponent {
   private _buttonsRightToData!: boolean;
 
   constructor(
-    private dataViewService: DataViewService,
-    private linkService: LinkService,
-    private textService: TextService
-  ) {
-    effect(() => {
-      if (this.containerIndex() === this.dataViewService.containerIndex()) {
-        this.displayBlock = true;
-      } else {
-        this.displayBlock = false;
-      }
-    });
+    private readonly dataViewService: DataViewService,
+    private readonly linkService: LinkService,
+    private readonly textService: TextService
+  ) {}
+
+  shouldShow(): boolean {
+    return (
+      this.containerIndex() === this.dataViewService.containerIndex() &&
+      this.dataViewService.containerIndex() !== null &&
+      this.socialData() !== null
+    );
   }
 
   closeDataView() {
-    this.dataView()?.nativeElement.classList.remove('visible');
-    setTimeout(() => {
-      this.displayBlock = false;
-      this.dataViewService.containerIndex.set(null);
-    }, 300);
+    this.dataViewService.containerIndex.set(null);
   }
 
   goToLink() {

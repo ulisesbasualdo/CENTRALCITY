@@ -139,7 +139,7 @@ export class IconDropdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleDropDown(event: MouseEvent): void {
+  toggleDropDown(event: MouseEvent | FocusEvent): void {
     event.stopPropagation();
     this.dropDownShown = !this.dropDownShown;
     this.dropdownService.setDropdownState(this.dropDownShown ? this.dropdownId : null);
