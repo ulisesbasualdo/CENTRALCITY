@@ -35,9 +35,7 @@ export class ScrolleableContainerDirective {
     if (this.disableScroll) return;
 
     event.preventDefault();
-    const target = this.applyToParent
-      ? this.el.nativeElement.parentElement
-      : this.el.nativeElement;
+    const target = this.applyToParent ? this.el.nativeElement.parentElement : this.el.nativeElement;
 
     if (target) {
       target.scrollLeft += event.deltaY;

@@ -102,7 +102,7 @@
 .visible {
   opacity: 1;
   animation: fadeIn 0.3s ease-in-out;
-  display:flex;
+  display: flex;
 }
 
 .fade:not(.visible) {

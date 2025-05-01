@@ -5,15 +5,15 @@ import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
   standalone: true,
 })
 export class ScrollAnimationsDirective implements AfterViewInit {
-  @Input('animationInput') animationInput: string = "";
-  @Input('animationOutput') animationOutput: string = "fadeOut";
-  @Input('opacityEnd') opacityEnd: string = "1";
-  @Input('animationDelay') delay: string = "0s";
-  @Input('isOneTime') isOneTime: boolean = false;
+  @Input() animationInput: string = '';
+  @Input() animationOutput: string = 'fadeOut';
+  @Input() opacityEnd: string = '1';
+  @Input() animationDelay: string = '0s';
+  @Input() isOneTime: boolean = false;
 
   private observer!: IntersectionObserver;
 
-  constructor(private el: ElementRef<HTMLElement>) { }
+  constructor(private el: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit() {
     this.observer = new IntersectionObserver(entries => {

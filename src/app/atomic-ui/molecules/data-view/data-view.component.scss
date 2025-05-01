@@ -20,7 +20,6 @@
         max-width: 10em;
         overflow-wrap: break-word;
         white-space: nowrap;
-
       }
       .child-content::-webkit-scrollbar {
         display: none;
@@ -100,8 +99,10 @@ width-max-content {
 
 .fade {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-  
+  transition:
+    opacity 0.3s ease-in-out,
+    height 0.3s ease-in-out;
+
   height: 6em;
 }
 
@@ -112,7 +113,9 @@ width-max-content {
 
 .fade:not(.visible) {
   opacity: 0;
-  animation: fadeOut 0.3s ease-in-out, height 0.3s ease-in-out;
+  animation:
+    fadeOut 0.3s ease-in-out,
+    height 0.3s ease-in-out;
   height: fit-content;
   > .btn-common-persistents {
     height: fit-content;
@@ -125,7 +128,7 @@ width-max-content {
   position: relative;
   margin-block: 1em;
   gap: 1em;
-  
+
   &.noScroll {
     justify-content: center;
     flex-wrap: wrap;

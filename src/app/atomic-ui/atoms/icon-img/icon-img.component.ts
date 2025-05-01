@@ -1,32 +1,31 @@
-import { Component, computed, Input, input, output } from '@angular/core';
+import { Component, Input, input, output } from '@angular/core';
 import { PredefinedIconService } from '@utils/predefined-icon.service';
 
 @Component({
-  selector: 'icon-img',
+  selector: 'app-icon-img',
   standalone: true,
   imports: [],
   template: `
     <img
       class="icon-img"
-      [class.pointer] = pointer()
-      [class.disabled] = disabled()
+      [class.pointer]="pointer()"
+      [class.disabled]="disabled()"
       (click)="click($event)"
       [src]="getSrcPredefined ? getSrcPredefined : src()"
-      [alt]="alt()"
-    />
+      [alt]="alt()" />
   `,
   styles: `
-  img.icon-img {
-    width: 2em;
-    height: auto;
-  }
-  img.icon-img.pointer {
-    cursor: pointer;
-  }
-  .disabled {
-    filter: grayscale(100%);
-    pointer-events: none;
-  }
+    img.icon-img {
+      width: 2em;
+      height: auto;
+    }
+    img.icon-img.pointer {
+      cursor: pointer;
+    }
+    .disabled {
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
   `,
 })
 export class IconImgComponent {
@@ -39,10 +38,9 @@ export class IconImgComponent {
   private _srcPredefined!: string;
 
   @Input() set srcPredefined(value: string | null) {
-    if (value){
-      let formattedSrc: string
-      formattedSrc = this.setPredefinedIcon(value);
-      this._srcPredefined = formattedSrc; 
+    if (value) {
+      const formattedSrc = this.setPredefinedIcon(value);
+      this._srcPredefined = formattedSrc;
     }
   }
   get getSrcPredefined(): string {
@@ -52,23 +50,23 @@ export class IconImgComponent {
   alt = input<string | null>();
   tooltip = input<string>();
 
-  onClick = output<Event>();
+  clickEvent = output<Event>();
 
-  constructor (private predefinedIconService: PredefinedIconService) {}
+  constructor(private predefinedIconService: PredefinedIconService) {}
 
-  setPredefinedIcon(predefined: string): string{
+  setPredefinedIcon(predefined: string): string {
     predefined = this.predefinedIconService.defineIconImg(predefined);
-    return predefined
+    return predefined;
   }
 
   click(event: Event) {
     if (this.disabled()) return;
     if (this.externalLink()) return this.goToLink(this.externalLink());
-    this.onClick.emit(event);
+    this.clickEvent.emit(event);
   }
 
   goToLink(link: string | undefined): void {
-    if (!link) return
+    if (!link) return;
     window.open(link, '_blank');
   }
 }

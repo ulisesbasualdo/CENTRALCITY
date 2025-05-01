@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ISocialData } from 'src/app/core/interfaces/i-data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PredefinedIconService {
-
-  imgPath!: string  ;
+  imgPath!: string;
 
   defineIconImg(platform: string): string {
     switch (platform) {
@@ -34,5 +32,4 @@ export class PredefinedIconService {
     }
     return this.imgPath;
   }
-  
 }

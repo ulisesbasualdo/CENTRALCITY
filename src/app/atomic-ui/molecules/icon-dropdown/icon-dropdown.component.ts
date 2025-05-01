@@ -1,17 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, OnDestroy } from '@angular/core';
 import { DropdownService } from '../../utils/dropdown.service';
 import { Subscription } from 'rxjs';
 import { ISocialData } from '../../../core/interfaces/i-data';
@@ -23,109 +11,94 @@ import { PredefinedIconService } from '@utils/predefined-icon.service';
   imports: [NgClass],
   template: `
     <div class="dropdown-container">
-      @if( isData() ){
+      @if (isData()) {
         <img
           class="icon-img pointer"
-          (click)="[toggleDropDown($event),
-            onClick.emit($event)
-          ]"
+          (click)="[toggleDropDown($event), clickEvent.emit($event)]"
           [src]="iconImg ? iconImg : ''"
-          alt=""
-        />
-        <div
-          #data
-          class="social-data"
-          [ngClass]="dropDownShown ? 'show' : 'hidden'"
-        >
-          @if(isDataString(iconDropdown.username)) 
-            {<p>Usuario: {{ iconDropdown.username }}</p>}
-          @if(isDataString(iconDropdown.name)) 
-            {<p>Nombre: {{ iconDropdown.name }}</p>}
-          @if(isDataString(iconDropdown.type)) 
-            {<p>Tipo: {{ iconDropdown.type }}</p>}
-          @if(isDataString(iconDropdown.link)) 
-            {<p>Link: {{ iconDropdown.link }}</p>}
+          alt="" />
+        <div #data class="social-data" [ngClass]="dropDownShown ? 'show' : 'hidden'">
+          @if (isDataString(iconDropdown.username)) {
+            <p>Usuario: {{ iconDropdown.username }}</p>
+          }
+          @if (isDataString(iconDropdown.name)) {
+            <p>Nombre: {{ iconDropdown.name }}</p>
+          }
+          @if (isDataString(iconDropdown.type)) {
+            <p>Tipo: {{ iconDropdown.type }}</p>
+          }
+          @if (isDataString(iconDropdown.link)) {
+            <p>Link: {{ iconDropdown.link }}</p>
+          }
         </div>
-      }
-      @else if (customIconImg && description && onHover && externalLink) {
+      } @else if (customIconImg && description && onHover && externalLink) {
         <img
-        class="icon-img pointer"
-        (mouseover)="toggleDropDown($event)"
-        (mouseout)="toggleDropDown($event)"
-        (click)="goToLink(externalLink)"
-        [src]="customIconImg"
-        [alt]="description"
-      />
-        <div
-        #data
-        [ngClass]="[
-          dropDownShown ? 'show' : 'hidden',
-          onHover ? 'social-data on-hover' : 'social-data'
-          ]"
-      >
-        <p>{{ description }}</p>
-        
-      </div>
-      }
-      @else {
-      <img
-        class="icon-img disabled"
-        (click)="toggleDropDown($event)"
-        [src]="iconImg ? iconImg : ''"
-        alt=""
-      />
+          class="icon-img pointer"
+          (mouseover)="toggleDropDown($event)"
+          (focus)="toggleDropDown($event)"
+          (mouseout)="toggleDropDown($event)"
+          (blur)="toggleDropDown($event)"
+          (click)="goToLink(externalLink)"
+          [src]="customIconImg"
+          [alt]="description"
+          tabindex="0" />
+        <div #data [ngClass]="[dropDownShown ? 'show' : 'hidden', onHover ? 'social-data on-hover' : 'social-data']">
+          <p>{{ description }}</p>
+        </div>
+      } @else {
+        <img class="icon-img disabled" (click)="toggleDropDown($event)" [src]="iconImg ? iconImg : ''" alt="" />
       }
     </div>
   `,
   styles: `
-  .dropdown-container {
-    position: relative;
-    display: inline-block;
-  }
-  .social-data {
-    display: none;
-    background-color: black;
-    color: white;
-    border-radius: 0.5em;
-    padding: 0.5em 1em;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    width: 300px;
-    &.on-hover {
-      background-color: #000000cc;
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
     }
-  }
+    .social-data {
+      display: none;
+      background-color: black;
+      color: white;
+      border-radius: 0.5em;
+      padding: 0.5em 1em;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      width: 300px;
+      &.on-hover {
+        background-color: #000000cc;
+      }
+    }
 
-  .social-data.on-hover:hover {
-    display: block;
-  }
+    .social-data.on-hover:hover {
+      display: block;
+    }
 
-  img.icon-img {
-    width: 2em;
-    height: auto;
-  }
-  img.icon-img.pointer {
-    cursor: pointer;
-  }
-  .show{
-    display: block;
-  }
-  .hidden{
-    display: none;
-  }
-  .disabled {
-    filter: grayscale(100%);
-    pointer-events: none;
-  }
+    img.icon-img {
+      width: 2em;
+      height: auto;
+    }
+    img.icon-img.pointer {
+      cursor: pointer;
+    }
+    .show {
+      display: block;
+    }
+    .hidden {
+      display: none;
+    }
+    .disabled {
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
   `,
 })
-export class IconDropdownComponent implements OnInit {
+export class IconDropdownComponent implements OnInit, OnDestroy {
   @Input() iconDropdown!: ISocialData;
 
-  @Output() onClick = new EventEmitter<Event>();
+  @Output() clickEvent = new EventEmitter<Event>();
 
   iconImg!: string | null;
 
@@ -145,13 +118,13 @@ export class IconDropdownComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.subscription = this.dropdownService.dropdownState$.subscribe((id) => {
+    this.subscription = this.dropdownService.dropdownState$.subscribe(id => {
       if (id !== this.dropdownId) {
         this.dropDownShown = false;
       }
     });
-    if(this.iconDropdown?.platform && this.iconDropdown.platform.length > 0) {
-    this.predefinedIconService.defineIconImg(this.iconDropdown.platform);
+    if (this.iconDropdown?.platform && this.iconDropdown.platform.length > 0) {
+      this.predefinedIconService.defineIconImg(this.iconDropdown.platform);
     }
   }
 
@@ -169,20 +142,16 @@ export class IconDropdownComponent implements OnInit {
   toggleDropDown(event: MouseEvent): void {
     event.stopPropagation();
     this.dropDownShown = !this.dropDownShown;
-    this.dropdownService.setDropdownState(
-      this.dropDownShown ? this.dropdownId : null
-    );
+    this.dropdownService.setDropdownState(this.dropDownShown ? this.dropdownId : null);
   }
 
   isData(): boolean {
-   return this.dropdownService.isData(this.iconDropdown);
+    return this.dropdownService.isData(this.iconDropdown);
   }
 
   isDataString(string: string | undefined): boolean {
     return string !== null && string !== undefined && string.length > 0;
   }
-
-  
 
   goToLink(link: string): void {
     window.open(link, '_blank');

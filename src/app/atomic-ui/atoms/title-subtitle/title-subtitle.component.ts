@@ -4,10 +4,10 @@ import { Component, Input } from '@angular/core';
   selector: 'app-title-subtitle',
   standalone: true,
   imports: [],
-  template: ` 
-  <h2>{{title}}</h2>
-  <p>{{subtitle}}</p>
-   `,
+  template: `
+    <h2>{{ title }}</h2>
+    <p>{{ subtitle }}</p>
+  `,
   styles: ``,
 })
 export class TitleSubtitleComponent {

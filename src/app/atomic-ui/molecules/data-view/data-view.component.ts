@@ -1,11 +1,4 @@
-import {
-  Component,
-  effect,
-  ElementRef,
-  Input,
-  input,
-  viewChild,
-} from '@angular/core';
+import { Component, effect, ElementRef, Input, input, viewChild } from '@angular/core';
 import { DataViewService } from '@utils/data-view.service';
 import { LinkService } from '@utils/link.service';
 import { TextService } from '@utils/text.service';
@@ -19,21 +12,13 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
   imports: [BtnComponent, ScrolleableContainerDirective],
   template: `
     @if (displayBlock) {
-      <div
-        #dataView
-        [class.data-view]="socialData()"
-        [class.visible]="socialData()"
-        class="fade"
-      >
+      <div #dataView [class.data-view]="socialData()" [class.visible]="socialData()" class="fade">
         <span class="content">
           @if (socialData()?.username) {
             <div class="child-content">
               <p>{{ socialData()?.username }}</p>
               @if (buttonsRightToData) {
-                <div
-                  class="btn-copy"
-                  (click)="copyText(socialData()?.username)"
-                >
+                <div class="btn-copy" (click)="copyText(socialData()?.username)">
                   <span>c</span>
                 </div>
               }
@@ -81,16 +66,14 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
               #btnGoToLink
               class="btn-persistent"
               [style]="{ height: dataView.style.height + 'px' }"
-              (click)="goToLink()"
-            >
+              (click)="goToLink()">
               <span>i</span>
             </div>
             <div
               #btnClose
               class="btn-persistent"
               [style]="{ height: dataView.style.height + 'px' }"
-              (click)="closeDataView()"
-            >
+              (click)="closeDataView()">
               <span>x</span>
             </div>
           </div>
@@ -101,59 +84,49 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
         appScrolleable
         [spaceInBottom]="true"
         [disableScroll]="!hasScroll()"
-        [class.noScroll]="!hasScroll()"
-      >
+        [class.noScroll]="!hasScroll()">
         <app-btn text="Ir al Link" color="green" (onClick)="goToLink()" />
         <app-btn
           text="Copiar Link"
           color="blue"
           [disabled]="!socialData()?.link || socialData()?.link?.length === 0"
-          (onClick)="copyText(socialData()?.link)"
-        />
+          (onClick)="copyText(socialData()?.link)" />
         @if (socialData()?.type === 'email') {
           <app-btn
             text="Copiar Email"
             color="blue"
             [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
-            (onClick)="copyText(socialData()?.name)"
-          />
+            (onClick)="copyText(socialData()?.name)" />
         } @else if (socialData()?.platform === 'phone') {
           <app-btn
             text="Copiar Teléfono"
             color="blue"
             [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
-            (onClick)="copyText(socialData()?.name)"
-          />
+            (onClick)="copyText(socialData()?.name)" />
         } @else if (socialData()?.platform === 'wp') {
           <app-btn
             text="Copiar Teléfono"
             color="blue"
             [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
-            (onClick)="copyText(socialData()?.name)"
-          />
+            (onClick)="copyText(socialData()?.name)" />
         } @else if (socialData()?.platform === 'gmaps') {
           <app-btn
             text="Copiar Dirección"
             color="blue"
             [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
-            (onClick)="copyText(socialData()?.name)"
-          />
+            (onClick)="copyText(socialData()?.name)" />
         } @else {
           <app-btn
             text="Copiar Nombre"
             color="blue"
             [disabled]="!socialData()?.name || socialData()?.name?.length === 0"
-            (onClick)="copyText(socialData()?.name)"
-          />
+            (onClick)="copyText(socialData()?.name)" />
         }
         <app-btn
           text="Copiar Usuario"
           color="blue"
-          [disabled]="
-            !socialData()?.username || socialData()?.username?.length === 0
-          "
-          (onClick)="copyText(socialData()?.username)"
-        />
+          [disabled]="!socialData()?.username || socialData()?.username?.length === 0"
+          (onClick)="copyText(socialData()?.username)" />
       </div>
     }
   `,

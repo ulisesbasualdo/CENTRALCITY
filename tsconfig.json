@@ -10,7 +10,7 @@
       "@organisms/*": ["src/app/atomic-ui/organisms/*"],
       "@molecules/*": ["src/app/atomic-ui/molecules/*"],
       "@atoms/*": ["src/app/atomic-ui/atoms/*"],
-      "@utils/*": ["src/app/atomic-ui/utils/*"],
+      "@utils/*": ["src/app/atomic-ui/utils/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist/out-tsc",
@@ -29,10 +29,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

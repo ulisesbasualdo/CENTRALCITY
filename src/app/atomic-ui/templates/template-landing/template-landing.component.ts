@@ -1,12 +1,4 @@
-import {
-  Component,
-  effect,
-  ElementRef,
-  Input,
-  signal,
-  viewChild,
-  viewChildren,
-} from '@angular/core';
+import { Component, effect, ElementRef, Input, signal, viewChild, viewChildren, OnDestroy } from '@angular/core';
 import { ParallaxHeroComponent } from '../../organisms/parallax-hero/parallax-hero.component';
 import { TitleSubtitleComponent } from '../../atoms/title-subtitle/title-subtitle.component';
 import { CardComponent } from '../../molecules/card/card.component';
@@ -25,67 +17,49 @@ import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-con
     CardComponent,
     DataViewComponent,
     IconImgComponent,
-    ScrolleableContainerDirective
+    ScrolleableContainerDirective,
   ],
   template: `
-    @if(data){
-    <app-parallax-hero />
-    @for(item of data; track item; let itemIndex = $index){
-    <section>
-      <app-title-subtitle [title]="item.name" [subtitle]="item.description" />
-      <div class="container">
-        @for(dataItem of item.dataItems; track dataItem; let dataItemIndex =
-        $index;){
-        <app-card
-          #card
-          [isNewCard]="dataItem.newCard"
-          [title]="dataItem.name"
-          [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)"
-        >
-          <div cardBody class="inline-block">
-            <div class="icon-container">
-              <div
-                class="icon-scroll"
-                appScrolleable
-                [spaceInBottom]="true"
-              >
-                <div
-                  #iconWrapper
-                  class="icon-wrapper"
-                >
-                  @for(dataSocial of dataItem.social; track dataSocial; let j =
-                  $index){
-                  <icon-img
-                    [srcPredefined]="dataSocial.platform"
-                    [alt]="dataSocial.platform"
-                    (onClick)="
-                      setDataViewAndContainer(
-                        itemIndex,
-                        dataSocial,
-                        dataItemIndex,
-                        j
-                      )
-                    "
-                  />
-                  }
+    @if (data) {
+      <app-parallax-hero />
+      @for (item of data; track item; let itemIndex = $index) {
+        <section>
+          <app-title-subtitle [title]="item.name" [subtitle]="item.description" />
+          <div class="container">
+            @for (dataItem of item.dataItems; track dataItem; let dataItemIndex = $index) {
+              <app-card
+                #card
+                [isNewCard]="dataItem.newCard"
+                [title]="dataItem.name"
+                [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)">
+                <div cardBody class="inline-block">
+                  <div class="icon-container">
+                    <div class="icon-scroll" appScrolleable [spaceInBottom]="true">
+                      <div #iconWrapper class="icon-wrapper">
+                        @for (dataSocial of dataItem.social; track dataSocial; let j = $index) {
+                          <icon-img
+                            [srcPredefined]="dataSocial.platform"
+                            [alt]="dataSocial.platform"
+                            (onClick)="setDataViewAndContainer(itemIndex, dataSocial, dataItemIndex, j)" />
+                        }
+                      </div>
+                    </div>
+                  </div>
+                  <app-data-view
+                    [socialData]="socialData"
+                    [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)"
+                    class="fade"
+                    [class.visible]="isDataViewVisible(itemIndex, dataItemIndex)"
+                    style="min-width: 100%;" />
                 </div>
-              </div>
-            </div>
-            <app-data-view
-              [socialData]="socialData"
-              [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)"
-              class="fade"
-              [class.visible]="isDataViewVisible(itemIndex, dataItemIndex)"
-              style="min-width: 100%;"
-            />
+                <div cardFooter></div>
+              </app-card>
+            }
           </div>
-          <div cardFooter></div>
-        </app-card>
-        }
-      </div>
-    </section>
-    } } @else {
-    <h2>Ha sucedido un error temporal, estamos trabajando en resolverlo.</h2>
+        </section>
+      }
+    } @else {
+      <h2>Ha sucedido un error temporal, estamos trabajando en resolverlo.</h2>
     }
   `,
   styles: [
@@ -170,7 +144,7 @@ import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-con
     `,
   ],
 })
-export class TemplateLandingComponent {
+export class TemplateLandingComponent implements OnDestroy {
   @Input() data!: IData[];
   cardComponents = viewChildren<CardComponent>('card');
 
@@ -216,38 +190,25 @@ export class TemplateLandingComponent {
     this.resizeObserver.observe(this.iconWrapper()!.nativeElement);
   }
 
-  setDataViewAndContainer(
-    itemIndex: number,
-    data: ISocialData,
-    dataItemIndex: number,
-    content: number
-  ) {
+  setDataViewAndContainer(itemIndex: number, data: ISocialData, dataItemIndex: number) {
     this.dataViewService.contentSocial.set(data);
-    let formatedContainerIndex = this.formatContainerIndex(
-      itemIndex,
-      dataItemIndex
-    );
+    const formatedContainerIndex = this.formatContainerIndex(itemIndex, dataItemIndex);
 
     this.dataViewService.containerIndex.set(formatedContainerIndex);
     this.containerIndex.set(formatedContainerIndex);
   }
 
   formatContainerIndex(itemIndex: number, dataItemIndex: number): number {
-    let result = itemIndex.toString() + dataItemIndex.toString();
+    const result = itemIndex.toString() + dataItemIndex.toString();
     return parseInt(result);
   }
 
   isDataViewVisible(itemIndex: number, dataItemIndex: number): boolean {
-    return (
-      this.containerIndex() ===
-      this.formatContainerIndex(itemIndex, dataItemIndex)
-    );
+    return this.containerIndex() === this.formatContainerIndex(itemIndex, dataItemIndex);
   }
 
   scrollIcons(direction: 'left' | 'right', event: Event) {
-    const container = (
-      event.target as HTMLElement
-    ).parentElement?.querySelector('.icon-scroll') as HTMLElement;
+    const container = (event.target as HTMLElement).parentElement?.querySelector('.icon-scroll') as HTMLElement;
     const scrollAmount = 100;
 
     if (direction === 'left') {
@@ -279,9 +240,7 @@ export class TemplateLandingComponent {
 
     const container = event.currentTarget as HTMLElement;
     const x =
-      event instanceof MouseEvent
-        ? event.pageX - container.offsetLeft
-        : event.touches[0].pageX - container.offsetLeft;
+      event instanceof MouseEvent ? event.pageX - container.offsetLeft : event.touches[0].pageX - container.offsetLeft;
 
     const walk = (x - this.startX) * 2;
     container.scrollLeft = this.scrollLeft - walk;
