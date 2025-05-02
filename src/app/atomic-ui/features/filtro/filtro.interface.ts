@@ -1,6 +1,11 @@
+export interface IContent {
+  id: string;
+  value: string;
+}
+
 export interface IFiltroResponse {
   key: string;
-  content: { id: string; value: string }[];
+  content: IContent[];
 }
 
 export interface IFiltro extends IFiltroResponse {

@@ -9,6 +9,15 @@ export class UIFiltroStoreService {
   set filtros(filtros: IFiltro[]) {
     this._filtros.set(filtros);
   }
+  set filtro(filtroArgumento: IFiltro) {
+    this.filtros.forEach(filtro => {
+      if (filtro.key === filtroArgumento.key) {
+        if (filtro.estado !== filtroArgumento.estado) {
+          filtro.estado = filtroArgumento.estado;
+        }
+      }
+    });
+  }
   get filtros(): IFiltro[] {
     return this._filtros();
   }

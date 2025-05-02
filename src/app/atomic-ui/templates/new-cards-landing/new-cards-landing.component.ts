@@ -3,7 +3,7 @@ import { UIVCardsComponent } from '../../features/vcards/vcards.component';
 import { UIVCardsHeaderComponent } from '../../features/vcards/vcards-header/vcards-header.component';
 import { UIVCardComponent } from '../../features/vcards/vcards-list/vcards-list.component';
 import { UIVScrollComponent } from '../../features/vcards/vscroll/vscroll.component';
-import { IFiltro } from '../../features/filtro/filtro.interface';
+import { IContent, IFiltro, IFiltroResponse } from '../../features/filtro/filtro.interface';
 import { DataService, IConsulta } from 'src/app/core/services/data.service';
 import { IData, IDataItem } from 'src/app/core/interfaces/i-data';
 
@@ -35,18 +35,27 @@ export class NewCardsLandingComponent implements OnInit {
     {
       key: 'salud',
       estado: 'sin-aplicar',
-      content: [],
+      content: [] as IContent[],
       appliedValue: null,
     },
     {
       key: 'remises',
       estado: 'sin-aplicar',
-      content: [],
+      content: [] as IContent[],
       appliedValue: null,
     },
   ]);
   set filtros(value: IFiltro[]) {
     this._filtros.set(value);
+  }
+  set filtroContent(filtroArgumento: IFiltroResponse) {
+    this.filtros.forEach(filtro => {
+      if (filtro.key === filtroArgumento.key) {
+        if (filtro.content !== filtroArgumento.content) {
+          filtro.content = filtroArgumento.content;
+        }
+      }
+    });
   }
   get filtros(): IFiltro[] {
     return this._filtros();
@@ -67,9 +76,15 @@ export class NewCardsLandingComponent implements OnInit {
       next: (data: IData) => {
         console.log({ data });
         this.dataService.datos = data.content;
-        this.filtros.forEach(filtro => {
-          filtro.content = data.filtros.find(f => f.key === filtro.key)?.content ?? [];
+        data.filtros.forEach(filtro => {
+          this.filtroContent = filtro;
         });
+        // this.filtro.content = filtro.content;
+        // this.filtro.key = content.key;
+
+        // this.filtros.forEach(filtro => {
+        //   filtro.content = data.filtros.find(f => f.key === filtro.key)?.content ?? [];
+        // });
       },
       error: error => {
         console.error('Error:', error);

@@ -38,7 +38,7 @@ export class UIVCardsHeaderComponent implements AfterContentChecked {
       return;
     }
     if (this.filtros) {
-      this.filtroStore.filtros.push(...this.filtros);
+      this.filtroStore.filtros = this.filtros;
       this.vistaIniciada = true;
     }
   }
@@ -46,7 +46,7 @@ export class UIVCardsHeaderComponent implements AfterContentChecked {
   emitirCambios(filtro: IFiltro): void {
     // agregar a la signal<IFiltro[]> del servicio store el filtro que se ha cambiado
 
-    this.filtroStore.filtros.push(filtro);
+    this.filtroStore.filtro = filtro;
 
     this.cambio.emit(this.filtroStore.filtros);
   }

@@ -22,12 +22,12 @@ import { NewCardsLandingComponent } from '../new-cards-landing/new-cards-landing
     NewCardsLandingComponent,
   ],
   template: `
-    @if (data) {
-      <app-parallax-hero />
-      <section>
-        <app-new-cards-landing />
-      </section>
-      @for (item of data; track item; let itemIndex = $index) {
+    <!-- @if (data) { -->
+    <!-- <app-parallax-hero /> -->
+    <section>
+      <app-new-cards-landing />
+    </section>
+    <!-- @for (item of data; track item; let itemIndex = $index) {
         <section>
           <app-title-subtitle [title]="item.name" [subtitle]="item.description" />
           <div class="container">
@@ -64,7 +64,7 @@ import { NewCardsLandingComponent } from '../new-cards-landing/new-cards-landing
       }
     } @else {
       <h2>Ha sucedido un error temporal, estamos trabajando en resolverlo.</h2>
-    }
+    } -->
   `,
   styles: [
     `

@@ -62,13 +62,13 @@ export class UIFiltroDropdownComponent {
   aplicarFiltro(filtro: IFiltro, value: string): void {
     filtro.appliedValue = value;
     filtro.estado = 'aplicado';
-    this.filtroStore.filtros.push(filtro);
+    this.filtroStore.filtro = filtro;
     this.filtroAplicado.emit(filtro);
   }
 
   limpiarFiltro(filtro: IFiltro): void {
     filtro.estado = 'sin-aplicar';
-    this.filtroStore.filtros.push(filtro);
+    this.filtroStore.filtro = filtro;
     this.limpiar.emit(filtro);
   }
 }
