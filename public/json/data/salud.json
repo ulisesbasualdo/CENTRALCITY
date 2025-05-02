@@ -3,16 +3,16 @@
   "name": "Salud",
   "note": "Los dos primeros hospitales listados son el mismo, pero en Google aparecen como distintos y tienen distinto número de teléfono, aunque la dirección es la misma",
   "description": "Hospitales y centros de salud en la ciudad de Miramar",
-  "dataItems": [
+  "content": [
     {
       "name": "Hospital Miramar",
       "location": {
-        "address": "Diag. J. M. Dupuy 1550",
-        "googleMapsLink": "https://g.co/kgs/GpV6kuh"
+        "address": "",
+        "googleMapsLink": ""
       },
       "phone": {
-        "number": "02291 43-1778",
-        "link": "tel:+542291431778",
+        "number": "",
+        "link": "",
         "tentativeNumber": "",
         "tentativeLink": ""
       },
@@ -33,15 +33,15 @@
         "link": ""
       },
       "web": {
-        "url": "https://hospitalmiramar.com.ar/"
+        "url": ""
       },
       "social": [
         {
           "platform": "gmaps",
           "username": "",
-          "name": "Diag. J. M. Dupuy 1550",
+          "name": "",
           "type": "",
-          "link": "https://www.google.com/maps/dir//Diag.+J.+M.+Dupuy+1550,+B7607+Miramar,+Provincia+de+Buenos+Aires/@-38.2707156,-57.926519,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x9585108a73c73bdf:0xbe85a3bf435179d8!2m2!1d-57.844118!2d-38.2707444?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+          "link": ""
         },
         {
           "platform": "fb",
@@ -92,12 +92,12 @@
       "name": "Hospital Municipal Dr. Marino Cassano",
       "newCard": true,
       "location": {
-        "address": "Diag. J. M. Dupuy 1550",
-        "googleMapsLink": "https://g.co/kgs/sNjAaj8"
+        "address": "",
+        "googleMapsLink": ""
       },
       "phone": {
-        "number": "02291 43-1253",
-        "link": "tel:+542291431253",
+        "number": "",
+        "link": "",
         "tentativeNumber": "",
         "tentativeLink": ""
       },
@@ -168,12 +168,12 @@
     {
       "name": "Instituto Médico Privado Mitre SRL",
       "location": {
-        "address": "Av B Mitre 1146",
-        "googleMapsLink": "https://g.co/kgs/1ZgvqdH"
+        "address": "",
+        "googleMapsLink": ""
       },
       "phone": {
-        "number": "02291 42-1149",
-        "link": "tel:+542291421149",
+        "number": "",
+        "link": "",
         "tentativeNumber": "",
         "tentativeLink": ""
       },
@@ -245,8 +245,8 @@
     {
       "name": "Salita Parquemar, Miramar",
       "location": {
-        "address": "Av. María Erramouspe",
-        "googleMapsLink": "https://g.co/kgs/3XNe4Af"
+        "address": "",
+        "googleMapsLink": ""
       },
       "phone": {
         "number": "",
@@ -322,12 +322,12 @@
     {
       "name": "Centro De Atención primaria De Salud Las Flores",
       "location": {
-        "address": "C. 9 3761",
-        "googleMapsLink": "https://g.co/kgs/cNbrc9V"
+        "address": "",
+        "googleMapsLink": ""
       },
       "phone": {
-        "number": "02291 43-3809",
-        "link": "tel:+542291433809",
+        "number": "",
+        "link": "",
         "tentativeNumber": "",
         "tentativeLink": ""
       },
@@ -399,12 +399,12 @@
     {
       "name": "Caps Belgrano",
       "location": {
-        "address": "C. 43 2399-2499",
-        "googleMapsLink": "https://g.co/kgs/pbruyEd"
+        "address": "",
+        "googleMapsLink": ""
       },
       "phone": {
-        "number": "02291 43-3295",
-        "link": "tel:+542291433295",
+        "number": "",
+        "link": "",
         "tentativeNumber": "",
         "tentativeLink": ""
       },

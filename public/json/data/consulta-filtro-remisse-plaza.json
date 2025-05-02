@@ -1,0 +1,85 @@
+{
+  "id": 1,
+  "name": "Miramar",
+  "note": "",
+  "description": "Servicios disponibles en la ciudad de Miramar",
+  "content": [
+    {
+      "name": "Remisse Plaza",
+      "location": {
+        "address": "",
+        "googleMapsLink": ""
+      },
+      "phone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "fb",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "x",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "tt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "li",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        }
+      ],
+      "newCard": false
+    }
+  ]
+}

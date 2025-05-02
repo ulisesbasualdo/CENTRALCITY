@@ -1,0 +1,92 @@
+{
+  "id": 0,
+  "name": "Salud",
+  "note": "Los dos primeros hospitales listados son el mismo, pero en Google aparecen como distintos y tienen distinto número de teléfono, aunque la dirección es la misma",
+  "description": "Hospitales y centros de salud en la ciudad de Miramar",
+  "content": [
+    {
+      "name": "Hospital Miramar",
+      "location": {
+        "address": "",
+        "googleMapsLink": ""
+      },
+      "phone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "celphone": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "whatsapp": {
+        "number": "",
+        "link": "",
+        "tentativeNumber": "",
+        "tentativeLink": ""
+      },
+      "email": {
+        "address": "",
+        "link": ""
+      },
+      "web": {
+        "url": ""
+      },
+      "social": [
+        {
+          "platform": "gmaps",
+          "username": "",
+          "name": "",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "fb",
+          "username": "@hospitalmiramar",
+          "name": "Hospital Miramar",
+          "type": "",
+          "link": ""
+        },
+        {
+          "platform": "ig",
+          "username": "@hospitalmiramar",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "x",
+          "username": "@hospitalmiramar",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "yt",
+          "username": "",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "tt",
+          "username": "hospitalmiramar",
+          "link": "",
+          "name": "",
+          "type": ""
+        },
+        {
+          "platform": "li",
+          "username": "Hospital Miramar Empleos",
+          "link": "",
+          "name": "",
+          "type": ""
+        }
+      ],
+      "newCard": false
+    }
+  ]
+}

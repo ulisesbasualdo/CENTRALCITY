@@ -7,6 +7,7 @@ import { DataViewComponent } from '../../molecules/data-view/data-view.component
 import { DataViewService } from '@utils/data-view.service';
 import { ScrolleableContainerDirective } from '@utils/directives/scrolleable-container.directive';
 import { IconImgComponent } from '../../atoms/icon-img/icon-img.component';
+import { NewCardsLandingComponent } from '../new-cards-landing/new-cards-landing.component';
 
 @Component({
   selector: 'app-template-landing',
@@ -18,15 +19,19 @@ import { IconImgComponent } from '../../atoms/icon-img/icon-img.component';
     DataViewComponent,
     ScrolleableContainerDirective,
     IconImgComponent,
+    NewCardsLandingComponent,
   ],
   template: `
     @if (data) {
       <app-parallax-hero />
+      <section>
+        <app-new-cards-landing />
+      </section>
       @for (item of data; track item; let itemIndex = $index) {
         <section>
           <app-title-subtitle [title]="item.name" [subtitle]="item.description" />
           <div class="container">
-            @for (dataItem of item.dataItems; track dataItem; let dataItemIndex = $index) {
+            @for (dataItem of item.content; track dataItem; let dataItemIndex = $index) {
               <app-card
                 #card
                 [isNewCard]="dataItem.newCard"

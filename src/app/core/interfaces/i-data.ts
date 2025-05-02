@@ -1,9 +1,12 @@
+import { IFiltroResponse } from 'src/app/atomic-ui/features/filtro/filtro.interface';
+
 export interface IData {
   id: number;
   name: string;
   note: string;
   description: string;
-  dataItems: IDataItem[];
+  content: IDataItem[];
+  filtros: IFiltroResponse[];
 }
 
 export interface IDataItem {
