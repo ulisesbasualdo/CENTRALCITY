@@ -13,7 +13,10 @@ import { IData, IDataItem } from 'src/app/core/interfaces/i-data';
   imports: [UIVCardsComponent, UIVCardsHeaderComponent, UIVCardComponent, UIVScrollComponent],
   template: `
     <ui-vcards>
-      <ui-vcards-header [filtros]="filtros" (cambio)="obtenerDatos(null, $event)" />
+      <ui-vcards-header
+        [filtros]="filtros"
+        (cambio)="obtenerDatos(null, $event)"
+        (clean)="obtenerDatos(null, $event)" />
       @if (datos) {
         @for (item of datos; track item) {
           <ui-vcard>
@@ -79,12 +82,6 @@ export class NewCardsLandingComponent implements OnInit {
         data.filtros.forEach(filtro => {
           this.filtroContent = filtro;
         });
-        // this.filtro.content = filtro.content;
-        // this.filtro.key = content.key;
-
-        // this.filtros.forEach(filtro => {
-        //   filtro.content = data.filtros.find(f => f.key === filtro.key)?.content ?? [];
-        // });
       },
       error: error => {
         console.error('Error:', error);
