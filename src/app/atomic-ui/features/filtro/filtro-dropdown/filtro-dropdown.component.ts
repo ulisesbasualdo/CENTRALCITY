@@ -19,12 +19,13 @@ import { UIFiltroStoreService } from '../filtro-store.service';
           }
         </div>
       }
-      @for (content of filtro.content; track content.id) {
+      <!-- div.filtro-dropdown-footer -->
+      <div class="dropdown-footer">
         @if (filtro.estado === 'aplicado') {
           <button (click)="limpiarFiltro(filtro)">Limpiar filtro</button>
         }
-      }
-      <button (click)="cerrado.emit()">Cerrar</button>
+        <button (click)="cerrado.emit()">Cerrar</button>
+      </div>
     </div>
   `,
   styles: `
@@ -32,9 +33,31 @@ import { UIFiltroStoreService } from '../filtro-store.service';
       position: absolute;
       background-color: white;
       border: 1px solid #ccc;
-      padding: 10px;
+      padding: 10px 10px 0px 10px;
       z-index: 1000;
+      width: auto;
+      max-height: 300px;
+      overflow-y: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      transition: all 0.3s ease-in-out;
+      animation: fadeIn 0.3s ease-in-out;
+      animation-fill-mode: forwards;
     }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .filtro-dropdown.show {
       display: flex;
       flex-direction: column;
@@ -62,6 +85,43 @@ import { UIFiltroStoreService } from '../filtro-store.service';
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+    .dropdown-footer {
+      position: sticky;
+      bottom: 0px;
+      background-color: #ffffff85;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0px;
+      padding-block: 1rem;
+      backdrop-filter: blur(2px);
+    }
+    .dropdown-footer button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .dropdown-footer::before {
+      content: '';
+      background-color: #2196f3;
+      filter: blur(35px);
+      position: absolute;
+      top: 35px;
+      left: 0;
+      right: 0;
+      bottom: 0px;
+      z-index: -1;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      height: 40px;
+    }
+
+    .dropdown-footer button:hover {
+      background-color: #d32f2f;
     }
   `,
 })

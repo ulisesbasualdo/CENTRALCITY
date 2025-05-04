@@ -39,7 +39,7 @@ export class DataService {
   }
 
   obtenerDatos(consulta: IConsulta | null, filtros: IFiltro[]): Observable<IData> {
-    const url = 'https://j7ge6.wiremockapi.cloud/consulta-completa';
+    const url = 'http://localhost:8001/consulta-completa';
 
     let params = new HttpParams();
 
