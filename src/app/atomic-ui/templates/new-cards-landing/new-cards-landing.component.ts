@@ -3,60 +3,142 @@ import { UIVCardsComponent } from '../../features/vcards/vcards.component';
 import { UIVCardsHeaderComponent } from '../../features/vcards/vcards-header/vcards-header.component';
 import { UIVCardComponent } from '../../features/vcards/vcards-list/vcards-list.component';
 import { UIVScrollComponent } from '../../features/vcards/vscroll/vscroll.component';
-import { IContent, IFiltro, IFiltroResponse } from '../../features/filtro/filtro.interface';
+import {
+  IContent,
+  IFiltro,
+  IFiltroResponse,
+} from '../../features/filtro/filtro.interface';
 import { DataService, IConsulta } from 'src/app/core/services/data.service';
 import { IData, IDataItem } from 'src/app/core/interfaces/i-data';
+import { UIModalComponent } from '../../features/modal/modal.component';
+import { BtnComponent } from '../../atoms/btn/btn.component';
+import { UIFiltroComponent } from '../../features/filtro/filtro.component';
+
+const SALUD_CONTENT: IContent[] = [
+  { id: '0', value: 'Hospital Central' },
+  { id: '1', value: 'Clínica Santa María' },
+  { id: '2', value: 'Centro de Salud Norte' },
+];
+const REMISES_CONTENT: IContent[] = [
+  { id: '0', value: 'Remis Rápido' },
+  { id: '1', value: 'Remises del Sur' },
+  { id: '2', value: 'Remis Express' },
+];
+
+const POLICIAS_CONTENT: IContent[] = [
+  { id: '0', value: 'Policía Federal' },
+  { id: '1', value: 'Policía Provincial' },
+  { id: '2', value: 'Policía Local' },
+];
+
+const ESCUELAS_CONTENT: IContent[] = [
+  { id: '0', value: 'Escuela Primaria 1' },
+  { id: '1', value: 'Escuela Secundaria 2' },
+  { id: '2', value: 'Escuela Técnica 3' },
+];
+
+const VETERINARIAS_CONTENT: IContent[] = [
+  { id: '0', value: 'Veterinaria Mascotas Felices' },
+  { id: '1', value: 'Clínica Veterinaria Salud Animal' },
+  { id: '2', value: 'Centro Veterinario del Sur' },
+];
+
+const UNIVERSIDADES_CONTENT: IContent[] = [
+  { id: '0', value: 'Universidad Nacional' },
+  { id: '1', value: 'Universidad Tecnológica' },
+  { id: '2', value: 'Universidad Privada' },
+];
 
 @Component({
   selector: 'app-new-cards-landing',
   standalone: true,
-  imports: [UIVCardsComponent, UIVCardsHeaderComponent, UIVCardComponent, UIVScrollComponent],
+  imports: [
+    UIVCardsComponent,
+    UIVCardsHeaderComponent,
+    UIVCardComponent,
+    UIVScrollComponent,
+    UIModalComponent,
+    BtnComponent,
+    UIFiltroComponent,
+  ],
   template: `
-    <ui-vcards>
-      <ui-vcards-header
-        [filtros]="filtros"
-        (cambio)="obtenerDatos(null, $event)"
-        (clean)="obtenerDatos(null, $event)" />
-      @if (datos) {
-        @for (item of datos; track item) {
-          <ui-vcard>
-            <ng-container>
-              <h2>nombre: {{ item.name || 'no-name' }}</h2>
-              <p>web: {{ item.web.url || 'no-url' }}</p>
-              <p>nota: {{ item.location.address || 'no-address' }}</p>
-            </ng-container>
-          </ui-vcard>
+    <div class="main">
+      <ui-vcards>
+        <ui-vcards-header
+          [filtros]="filtros"
+          (cambio)="obtenerDatos(null, $event)"
+          (clean)="obtenerDatos(null, $event)" />
+        @if (datos) {
+          @for (item of datos; track item) {
+            <ui-vcard>
+              <ng-container>
+                <h2>nombre: {{ item.name || 'no-name' }}</h2>
+                <p>web: {{ item.web.url || 'no-url' }}</p>
+                <p>nota: {{ item.location.address || 'no-address' }}</p>
+              </ng-container>
+            </ui-vcard>
+          }
         }
-      }
-      <ui-vscroll />
-    </ui-vcards>
+        <app-btn
+          (click)="uiModalHTML.open()"
+          [color]="'blue'"
+          [text]="'Más Filtros'"></app-btn>
+        <ui-modal #uiModalHTML [title]="'Modal de Filtros'">
+          <div class="modal-contenido">
+            @for (filtro of filtrosDeModal; track filtro) {
+              <ui-filtro [filtro]="filtro" />
+            }
+          </div>
+        </ui-modal>
+        <ui-vscroll />
+      </ui-vcards>
+    </div>
   `,
-  styles: ``,
+  styles: `
+    .main {
+      padding: 1em;
+      background-color: #f8f9fa;
+      font-family: 'Zain', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+    }
+    .modal-contenido {
+      padding: 1em;
+      width: 800px;
+      height: 400px;
+      display: flex;
+      flex-direction: row;
+      gap: 1em;
+    }
+  `,
 })
 export class NewCardsLandingComponent implements OnInit {
   private readonly _filtros = signal<IFiltro[]>([
     {
       key: 'salud',
       estado: 'sin-aplicar',
-      content: [] as IContent[],
+      content: SALUD_CONTENT,
       appliedValue: null,
     },
     {
       key: 'remises',
       estado: 'sin-aplicar',
-      content: [] as IContent[],
+      content: REMISES_CONTENT,
       appliedValue: null,
     },
     {
       key: 'policias',
       estado: 'sin-aplicar',
-      content: [] as IContent[],
+      content: POLICIAS_CONTENT,
       appliedValue: null,
     },
     {
       key: 'escuelas',
       estado: 'sin-aplicar',
-      content: [] as IContent[],
+      content: ESCUELAS_CONTENT,
       appliedValue: null,
     },
   ]);
@@ -76,6 +158,21 @@ export class NewCardsLandingComponent implements OnInit {
     return this._filtros();
   }
 
+  filtrosDeModal: IFiltro[] = [
+    {
+      key: 'veterinarias',
+      estado: 'sin-aplicar',
+      content: VETERINARIAS_CONTENT,
+      appliedValue: null,
+    },
+    {
+      key: 'universidades',
+      estado: 'sin-aplicar',
+      content: UNIVERSIDADES_CONTENT,
+      appliedValue: null,
+    },
+  ];
+
   constructor(private readonly dataService: DataService) {}
 
   ngOnInit(): void {
@@ -86,7 +183,10 @@ export class NewCardsLandingComponent implements OnInit {
     return this.dataService.datos;
   }
 
-  obtenerDatos(consulta: IConsulta | null = null, filtros: IFiltro[] = []): void {
+  obtenerDatos(
+    consulta: IConsulta | null = null,
+    filtros: IFiltro[] = []
+  ): void {
     this.dataService.obtenerDatos(consulta, filtros).subscribe({
       next: (data: IData) => {
         console.log({ data });

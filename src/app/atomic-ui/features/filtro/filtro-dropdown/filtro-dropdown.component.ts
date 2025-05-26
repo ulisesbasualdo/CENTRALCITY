@@ -1,142 +1,89 @@
-import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { IFiltro } from '../filtro.interface';
 import { UIFiltroStoreService } from '../filtro-store.service';
-import { IColleague } from '../i-colleague';
-import { Mediator } from '../mediator.class';
-import { MediatorService } from '../mediator.service';
+import { IColleague } from '../../i-colleague';
+import { Mediator } from '../../mediator.class';
+import { MediatorService } from '../../mediator.service';
+import { BtnComponent } from '../../../atoms/btn/btn.component';
 
 @Component({
   selector: 'app-filtro-dropdown, ui-filtro-dropdown',
   standalone: true,
-  imports: [],
+  imports: [BtnComponent],
   template: `
     @if (mostrar) {
-      <div id="filtroDropwdown" class="filtro-dropdown" (click)="detenerPropagacion($event)">
+      <div
+        #filtroDropdownHTML
+        id="filtroDropwdown"
+        class="filtro-dropdown"
+        (click)="detenerPropagacion($event)">
         @for (content of filtro.content; track $index) {
           <div class="contenido">
             <span> {{ filtro.key }}: {{ content.value }} </span>
-            @if (filtro.estado === 'sin-aplicar') {
-              <button (click)="aplicarFiltro(filtro, content.value)">+</button>
-            }
-            @if (filtro.estado === 'aplicado') {
-              <button (click)="limpiarFiltro(filtro)">X</button>
+            @if (appliedValue === content.value) {
+              <app-btn
+                [text]="'X'"
+                [color]="'red'"
+                [size]="'small'"
+                (click)="limpiarFiltro(filtro)" />
+            } @else {
+              <app-btn
+                [text]="'+'"
+                [color]="'blue'"
+                [size]="'small'"
+                (click)="aplicarFiltro(filtro, content.value)" />
             }
           </div>
         }
         <div class="dropdown-footer">
           @if (filtro.estado === 'aplicado') {
-            <button (click)="limpiarFiltro(filtro)">Limpiar filtro</button>
+            <app-btn
+              [text]="'Limpiar filtro'"
+              [color]="'red'"
+              [size]="'small'"
+              (click)="limpiarFiltro(filtro)" />
+          } @else if (filtro.estado === 'sin-aplicar') {
+            <app-btn
+              [text]="'Limpiar filtro'"
+              [color]="'blue'"
+              [size]="'small'"
+              [disabled]="true"
+              (click)="limpiarFiltro(filtro)" />
           }
-          <button (click)="cerrado.emit()">Cerrar</button>
+          <app-btn
+            [text]="'Cerrar'"
+            [color]="'default'"
+            [size]="'small'"
+            (click)="close()" />
         </div>
       </div>
     }
   `,
-  styles: `
-    .filtro-dropdown {
-      position: absolute;
-      background-color: white;
-      border: 1px solid #ccc;
-      padding: 10px 10px 0px 10px;
-      z-index: 1000;
-      width: auto;
-      max-height: 300px;
-      overflow-y: auto;
-      border-radius: 5px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-      transition: all 0.3s ease-in-out;
-      animation: fadeIn 0.3s ease-in-out;
-      animation-fill-mode: forwards;
-    }
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .filtro-dropdown {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25em;
-    }
-    .filtro-dropdown.hidden {
-      display: none;
-    }
-    .filtro-dropdown span {
-      display: inline-block;
-      margin-right: 10px;
-    }
-    .filtro-dropdown button {
-      margin-left: 5px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-    .filtro-dropdown button:hover {
-      background-color: #0056b3;
-    }
-    .contenido {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .dropdown-footer {
-      position: sticky;
-      bottom: 0px;
-      background-color: #ffffff85;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0px;
-      padding-block: 1rem;
-      backdrop-filter: blur(2px);
-    }
-    .dropdown-footer button {
-      background-color: #f44336;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-    .dropdown-footer::before {
-      content: '';
-      background-color: #2196f3;
-      filter: blur(35px);
-      position: absolute;
-      top: 35px;
-      left: 0;
-      right: 0;
-      bottom: 0px;
-      z-index: -1;
-      opacity: 1;
-      transition: opacity 0.3s ease;
-      height: 40px;
-    }
-
-    .dropdown-footer button:hover {
-      background-color: #d32f2f;
-    }
-  `,
+  styleUrl: './filtro-dropdown.component.scss',
 })
 export class UIFiltroDropdownComponent extends IColleague {
+  @ViewChild('filtroDropdownHTML')
+  filtroDropdownHTML!: ElementRef<HTMLDivElement>;
+
   @Input({ required: true }) filtro!: IFiltro;
   public mostrar: boolean = false;
 
   @Output() filtroAplicado: EventEmitter<IFiltro> = new EventEmitter<IFiltro>();
   @Output() limpiar: EventEmitter<IFiltro> = new EventEmitter<IFiltro>();
-  @Output() cerrado: EventEmitter<true> = new EventEmitter<true>();
 
+  get appliedValue(): string | null {
+    return this.filtro.appliedValue ?? null;
+  }
+  set appliedValue(value: string | null) {
+    this.filtro.appliedValue = value;
+  }
   // @Output()
   // public emititAbrir: EventEmitter<'abrir'> = new EventEmitter<'abrir'>();
 
@@ -174,15 +121,22 @@ export class UIFiltroDropdownComponent extends IColleague {
   }
 
   aplicarFiltro(filtro: IFiltro, value: string): void {
+    const mediator = this.getMediator as Mediator;
     filtro.appliedValue = value;
     filtro.estado = 'aplicado';
     this.filtroStore.filtro = filtro;
+    mediator.setParametros = [{ key: filtro.key, value: value }];
+    console.log('Parametros actualizados:', mediator.getParametros);
     this.filtroAplicado.emit(filtro);
   }
 
   limpiarFiltro(filtro: IFiltro): void {
+    const mediator = this.getMediator as Mediator;
     filtro.estado = 'sin-aplicar';
     this.filtroStore.filtro = filtro;
+    mediator.eliminarParametro(filtro.key);
+    console.log('Parametros actualizados:', mediator.getParametros);
+    this.appliedValue = null;
     this.limpiar.emit(filtro);
   }
 
@@ -192,5 +146,17 @@ export class UIFiltroDropdownComponent extends IColleague {
       return true;
     }
     return !elemento.contains(event.target);
+  }
+
+  close(): void {
+    const dropdown = this.filtroDropdownHTML;
+    if (dropdown) {
+      dropdown.nativeElement.classList.add('fade-out');
+      setTimeout(() => {
+        this.mostrar = false;
+      }, 150); // Debe coincidir con la duración de la animación (0.3s = 300ms)
+    }
+    const mediator = this.getMediator as Mediator;
+    mediator.send('cerrar', this);
   }
 }

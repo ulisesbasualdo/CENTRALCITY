@@ -1,30 +1,39 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { IFiltro } from './filtro.interface';
 import { UIFiltroDropdownComponent } from './filtro-dropdown/filtro-dropdown.component';
-import { IColleague } from './i-colleague';
-import { Mediator } from './mediator.class';
-import { MediatorService } from './mediator.service';
+import { IColleague } from '../i-colleague';
+import { Mediator } from '../mediator.class';
+import { MediatorService } from '../mediator.service';
+import { BtnComponent } from '../../atoms/btn/btn.component';
 
 @Component({
   selector: 'app-filtro, ui-filtro',
   standalone: true,
-  imports: [UIFiltroDropdownComponent],
+  imports: [UIFiltroDropdownComponent, BtnComponent],
   template: `
     @if (filtro) {
       @switch (filtro.estado) {
         @case ('aplicado') {
-          <div class="filtro-aplicado" (click)="abrirCerrarDropdown(filtroDropdown, $event)">
-            <button>
-              <span> ~~ APLICADO ~~ </span><span>{{ filtro.key }}</span>
-            </button>
-          </div>
+          <app-btn
+            [text]="filtro.key"
+            [color]="'green'"
+            (click)="abrirCerrarDropdown(filtroDropdown, $event)">
+          </app-btn>
         }
         @case ('sin-aplicar') {
-          <div class="filtro-sin-aplicar" (click)="abrirCerrarDropdown(filtroDropdown, $event)">
-            <button>
-              <span>{{ filtro.key }}</span>
-            </button>
-          </div>
+          <app-btn
+            [text]="filtro.key"
+            [color]="'blue'"
+            (click)="abrirCerrarDropdown(filtroDropdown, $event)">
+          </app-btn>
         }
       }
       <ui-filtro-dropdown
@@ -103,7 +112,10 @@ export class UIFiltroComponent extends IColleague {
     console.log('Recibiendo mensaje en el dropdown', message);
   }
 
-  abrirCerrarDropdown(filtroDropdown: UIFiltroDropdownComponent, event?: MouseEvent): void {
+  abrirCerrarDropdown(
+    filtroDropdown: UIFiltroDropdownComponent,
+    event?: MouseEvent
+  ): void {
     if (event) {
       event.stopPropagation();
     }
@@ -117,7 +129,8 @@ export class UIFiltroComponent extends IColleague {
     const mediator = this.getMediator as Mediator;
 
     if (this.filtroDropdownComponent && this.filtroDropdownComponent.mostrar) {
-      const clicDentroDelDropdown = !this.filtroDropdownComponent.clickFuera(event);
+      const clicDentroDelDropdown =
+        !this.filtroDropdownComponent.clickFuera(event);
       if (clicDentroDelDropdown) {
         event.stopPropagation();
         return;
