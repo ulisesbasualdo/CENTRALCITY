@@ -47,6 +47,18 @@ export class NewCardsLandingComponent implements OnInit {
       content: [] as IContent[],
       appliedValue: null,
     },
+    {
+      key: 'policias',
+      estado: 'sin-aplicar',
+      content: [] as IContent[],
+      appliedValue: null,
+    },
+    {
+      key: 'escuelas',
+      estado: 'sin-aplicar',
+      content: [] as IContent[],
+      appliedValue: null,
+    },
   ]);
   set filtros(value: IFiltro[]) {
     this._filtros.set(value);

@@ -1,6 +1,9 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { IFiltro } from './filtro.interface';
 import { UIFiltroDropdownComponent } from './filtro-dropdown/filtro-dropdown.component';
+import { IColleague } from './i-colleague';
+import { Mediator } from './mediator.class';
+import { MediatorService } from './mediator.service';
 
 @Component({
   selector: 'app-filtro, ui-filtro',
@@ -10,15 +13,15 @@ import { UIFiltroDropdownComponent } from './filtro-dropdown/filtro-dropdown.com
     @if (filtro) {
       @switch (filtro.estado) {
         @case ('aplicado') {
-          <div class="filtro-aplicado">
-            <button (click)="abrirCerrarDropdown()">
+          <div class="filtro-aplicado" (click)="abrirCerrarDropdown(filtroDropdown, $event)">
+            <button>
               <span> ~~ APLICADO ~~ </span><span>{{ filtro.key }}</span>
             </button>
           </div>
         }
         @case ('sin-aplicar') {
-          <div class="filtro-sin-aplicar">
-            <button (click)="abrirCerrarDropdown()">
+          <div class="filtro-sin-aplicar" (click)="abrirCerrarDropdown(filtroDropdown, $event)">
+            <button>
               <span>{{ filtro.key }}</span>
             </button>
           </div>
@@ -27,8 +30,6 @@ import { UIFiltroDropdownComponent } from './filtro-dropdown/filtro-dropdown.com
       <ui-filtro-dropdown
         #filtroDropdown
         [filtro]="filtro"
-        [mostrar]="mostrarDropdown"
-        (cerrado)="abrirCerrarDropdown()"
         (limpiar)="clean.emit($event)"
         (filtroAplicado)="cambio.emit($event)" />
     }
@@ -78,18 +79,60 @@ import { UIFiltroDropdownComponent } from './filtro-dropdown/filtro-dropdown.com
     }
   `,
 })
-export class UIFiltroComponent {
-  @ViewChild('filtroDropdown') filtroDropdownInHTML!: UIFiltroDropdownComponent;
+export class UIFiltroComponent extends IColleague {
+  @ViewChild('filtroDropdown', { read: UIFiltroDropdownComponent })
+  filtroDropdownComponent!: UIFiltroDropdownComponent;
+  @ViewChild('filtroDropdown')
+  filtroDropdownInHTML!: ElementRef<UIFiltroDropdownComponent>;
   @Input({ required: true }) filtro!: IFiltro;
   @Output() cambio: EventEmitter<IFiltro> = new EventEmitter();
   @Output() clean: EventEmitter<IFiltro> = new EventEmitter();
 
   mostrarDropdown: boolean = false;
 
-  constructor() {}
+  constructor(
+    mediatorService: MediatorService,
+    private readonly elementRef: ElementRef
+  ) {
+    super(mediatorService.getMediator());
+    // Registrarse como colega
+    this.getMediator.addColleague(this);
+  }
 
-  abrirCerrarDropdown() {
-    // Si vamos a abrir el dropdown
-    this.mostrarDropdown = !this.mostrarDropdown;
+  public receive(message: string): void {
+    console.log('Recibiendo mensaje en el dropdown', message);
+  }
+
+  abrirCerrarDropdown(filtroDropdown: UIFiltroDropdownComponent, event?: MouseEvent): void {
+    if (event) {
+      event.stopPropagation();
+    }
+
+    (this.getMediator as Mediator).activeDropdown = filtroDropdown;
+    this.getMediator.send('abrir', this);
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickFueraDelDropdown(event: MouseEvent): void {
+    const mediator = this.getMediator as Mediator;
+
+    if (this.filtroDropdownComponent && this.filtroDropdownComponent.mostrar) {
+      const clicDentroDelDropdown = !this.filtroDropdownComponent.clickFuera(event);
+      if (clicDentroDelDropdown) {
+        event.stopPropagation();
+        return;
+      }
+    }
+
+    // Verificar si el clic fue dentro del botón del filtro
+    if (this.elementRef.nativeElement.contains(event.target)) {
+      event.stopPropagation();
+      return;
+    }
+
+    // Solo aquí si el clic fue fuera del dropdown y fuera del botón
+    if (mediator.isAnyDropdownOpen) {
+      mediator.send('cerrar-todos', this);
+    }
   }
 }

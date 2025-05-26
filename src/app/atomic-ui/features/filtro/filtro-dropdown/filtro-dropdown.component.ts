@@ -1,32 +1,36 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { IFiltro } from '../filtro.interface';
 import { UIFiltroStoreService } from '../filtro-store.service';
+import { IColleague } from '../i-colleague';
+import { Mediator } from '../mediator.class';
+import { MediatorService } from '../mediator.service';
 
 @Component({
   selector: 'app-filtro-dropdown, ui-filtro-dropdown',
   standalone: true,
   imports: [],
   template: `
-    <div id="filtroDropwdown" class="filtro-dropdown" [class.show]="mostrar" [class.hidden]="!mostrar">
-      @for (content of filtro.content; track $index) {
-        <div class="contenido">
-          <span> {{ filtro.key }}: {{ content.value }} </span>
-          @if (filtro.estado === 'sin-aplicar') {
-            <button (click)="aplicarFiltro(filtro, content.value)">+</button>
-          }
-          @if (filtro.estado === 'aplicado') {
-            <button (click)="limpiarFiltro(filtro)">X</button>
-          }
-        </div>
-      }
-      <!-- div.filtro-dropdown-footer -->
-      <div class="dropdown-footer">
-        @if (filtro.estado === 'aplicado') {
-          <button (click)="limpiarFiltro(filtro)">Limpiar filtro</button>
+    @if (mostrar) {
+      <div id="filtroDropwdown" class="filtro-dropdown" (click)="detenerPropagacion($event)">
+        @for (content of filtro.content; track $index) {
+          <div class="contenido">
+            <span> {{ filtro.key }}: {{ content.value }} </span>
+            @if (filtro.estado === 'sin-aplicar') {
+              <button (click)="aplicarFiltro(filtro, content.value)">+</button>
+            }
+            @if (filtro.estado === 'aplicado') {
+              <button (click)="limpiarFiltro(filtro)">X</button>
+            }
+          </div>
         }
-        <button (click)="cerrado.emit()">Cerrar</button>
+        <div class="dropdown-footer">
+          @if (filtro.estado === 'aplicado') {
+            <button (click)="limpiarFiltro(filtro)">Limpiar filtro</button>
+          }
+          <button (click)="cerrado.emit()">Cerrar</button>
+        </div>
       </div>
-    </div>
+    }
   `,
   styles: `
     .filtro-dropdown {
@@ -58,7 +62,7 @@ import { UIFiltroStoreService } from '../filtro-store.service';
       }
     }
 
-    .filtro-dropdown.show {
+    .filtro-dropdown {
       display: flex;
       flex-direction: column;
       gap: 0.25em;
@@ -125,25 +129,48 @@ import { UIFiltroStoreService } from '../filtro-store.service';
     }
   `,
 })
-export class UIFiltroDropdownComponent {
+export class UIFiltroDropdownComponent extends IColleague {
   @Input({ required: true }) filtro!: IFiltro;
-  @Input() mostrar: boolean = false;
+  public mostrar: boolean = false;
+
   @Output() filtroAplicado: EventEmitter<IFiltro> = new EventEmitter<IFiltro>();
   @Output() limpiar: EventEmitter<IFiltro> = new EventEmitter<IFiltro>();
   @Output() cerrado: EventEmitter<true> = new EventEmitter<true>();
 
+  // @Output()
+  // public emititAbrir: EventEmitter<'abrir'> = new EventEmitter<'abrir'>();
+
   constructor(
     private readonly filtroStore: UIFiltroStoreService,
-    private readonly elementRef: ElementRef
-    // inyectar el servicio de dropdown
-  ) {}
+    private readonly elementRef: ElementRef,
+    mediatorService: MediatorService
+  ) {
+    super(mediatorService.getMediator());
+    // Registrarse como colega
+    this.getMediator.addColleague(this);
+  }
 
-  // verifica si no hay otro dropdown abierto, si lo hay, lo cierra
-  @HostListener('document:click', ['$event'])
-  clickFuera(event: MouseEvent) {
-    if (this.mostrar && !this.elementRef.nativeElement.contains(event.target)) {
-      this.cerrado.emit(true);
+  public receive(message: string): void {
+    if (message === 'abrir') {
+      // Solo abrir si este es el dropdown actual
+      const mediator = this.getMediator as Mediator;
+      if (mediator.activeDropdown === this) {
+        this.mostrar = true;
+        mediator.isAnyDropdownOpen = true;
+      } else {
+        // Si no es el activo, asegurarse de que esté cerrado
+        this.mostrar = false;
+      }
+    } else if (message === 'cerrar' || message === 'cerrar-todos') {
+      if (this.mostrar) {
+        this.mostrar = false;
+        (this.getMediator as Mediator).isAnyDropdownOpen = false;
+      }
     }
+  }
+
+  detenerPropagacion(event: MouseEvent): void {
+    event.stopPropagation();
   }
 
   aplicarFiltro(filtro: IFiltro, value: string): void {
@@ -157,5 +184,13 @@ export class UIFiltroDropdownComponent {
     filtro.estado = 'sin-aplicar';
     this.filtroStore.filtro = filtro;
     this.limpiar.emit(filtro);
+  }
+
+  clickFuera(event: MouseEvent): boolean {
+    const elemento = this.elementRef.nativeElement;
+    if (!this.mostrar || !elemento) {
+      return true;
+    }
+    return !elemento.contains(event.target);
   }
 }
