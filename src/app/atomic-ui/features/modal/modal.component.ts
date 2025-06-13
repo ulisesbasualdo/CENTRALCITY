@@ -1,21 +1,37 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewChild,
+} from '@angular/core';
+import { BtnComponent } from '@atoms/btn/btn.component';
 
 @Component({
   selector: 'app-ui-modal, ui-modal',
   standalone: true,
-  imports: [],
+  imports: [BtnComponent],
   template: `
     @if (abierto) {
       <div #uiModalContainerHTML class="ui-modal-container">
         <div class="ui-modal-content">
           <div class="ui-modal-header">
-            <h2>{{ title }}</h2>
+            <div class="ui-modal-title">
+              <h2>{{ title }}</h2>
+            </div>
+            <div class="ui-modal-close" (click)="close()">
+              <span>&times;</span>
+            </div>
           </div>
           <div class="ui-modal-content">
-            <ng-content></ng-content>
+            <ng-content class="ui-modal-body"></ng-content>
           </div>
           <div class="ui-modal-footer">
-            <button (click)="close()">Cerrar</button>
+            <ui-btn
+              (click)="close()"
+              [color]="'bgGrayTxtBlue'"
+              [text]="'Cerrar'">
+            </ui-btn>
           </div>
         </div>
       </div>
@@ -36,28 +52,54 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
     }
     .ui-modal-content {
       background-color: #fff;
-      border-radius: 0.25em;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 80%;
-      max-width: 600px;
-      margin: auto;
+      border-radius: 1em;
+      margin: 1em;
+      .ui-modal-body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        overflow-y: auto;
+        max-height: 60vh; /* Limita la altura del contenido */
+      }
     }
     .ui-modal-header {
       background-color: #f1f1f1;
       padding: 1em;
       border-bottom: 1px solid #ccc;
-    }
-    .ui-modal-content {
-      background-color: #fff;
-      padding: 1em;
-      border-radius: 0.25em;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      border-radius: 1em 1em 0 0;
+      .ui-modal-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h2 {
+          margin: 0;
+          font-size: 1.5em;
+          color: #333;
+        }
+      }
+      .ui-modal-close {
+        cursor: pointer;
+        font-size: 1.5em;
+        color: #333;
+        &:hover {
+          color: #ff0000;
+        }
+      }
     }
     .ui-modal-footer {
       background-color: #f1f1f1;
       padding: 1em;
       border-top: 1px solid #ccc;
       text-align: right;
+      border-radius: 0 0 1em 1em;
     }
     .ui-modal-footer button {
       padding: 0.5em 1em;
@@ -110,6 +152,18 @@ export class UIModalComponent {
       setTimeout(() => {
         this.abierto = false;
       }, 300); // Debe coincidir con la duración de la animación (0.3s = 300ms)
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.abierto) return;
+    const modalContent =
+      this.uiModalContainerHTML?.nativeElement.querySelector(
+        '.ui-modal-content'
+      );
+    if (modalContent && !modalContent.contains(event.target as Node)) {
+      this.close();
     }
   }
 }

@@ -116,7 +116,6 @@ const UNIVERSIDADES_CONTENT: IContent[] = [
       min-height: 100vh;
     }
     .modal-contenido {
-      padding: 1em;
       width: 800px;
       height: 400px;
       display: flex;

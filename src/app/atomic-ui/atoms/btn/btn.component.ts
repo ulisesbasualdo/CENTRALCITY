@@ -3,7 +3,7 @@ import { Component, input, output } from '@angular/core';
 type ButtonColor = 'blue' | 'red' | 'green' | 'bgGrayTxtBlue' | 'default';
 
 @Component({
-  selector: 'app-btn',
+  selector: 'app-btn, ui-btn',
   standalone: true,
   imports: [],
   template: `
