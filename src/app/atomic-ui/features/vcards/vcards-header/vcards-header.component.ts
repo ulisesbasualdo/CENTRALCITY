@@ -1,4 +1,11 @@
-import { AfterContentChecked, Component, EventEmitter, Input, Output, ViewChildren } from '@angular/core';
+import {
+  AfterContentChecked,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChildren,
+} from '@angular/core';
 import { UIFiltroComponent } from '../../filtro/filtro.component';
 import { IFiltro } from '../../filtro/filtro.interface';
 import { UIFiltroStoreService } from '../../filtro/filtro-store.service';
@@ -9,20 +16,36 @@ import { UIFiltroDropdownComponent } from '../../filtro/filtro-dropdown/filtro-d
   standalone: true,
   imports: [UIFiltroComponent],
   template: `
-    @if (filtrosDeStore) {
-      <div class="filtros-container">
-        @for (filtro of filtrosDeStore; track filtro) {
-          <ui-filtro [filtro]="filtro" (cambio)="emitirCambios(filtro)" (clean)="limpiarFiltro(filtro)" />
+    <div class="ui-vcards-header-container">
+      <div class="ui-vcards-header-contenido">
+        @if (filtrosDeStore) {
+          @for (filtro of filtrosDeStore; track filtro) {
+            <ui-filtro
+              [filtro]="filtro"
+              (cambio)="emitirCambios(filtro)"
+              (clean)="limpiarFiltro(filtro)" />
+          }
         }
+        <ng-content select="[primaryActions]" />
       </div>
-    }
+    </div>
   `,
   styles: `
-    .filtros-container {
-      display: flex;
-      flex-direction: row;
+    .vcards-header-container {
+      width: 100%;
+      align-items: center;
+      padding: 1em;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #dee2e6;
       gap: 0.5em;
       margin-bottom: 1em;
+    }
+    .ui-vcards-header-contenido {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      align-items: center;
+      justify-content: center;
     }
   `,
 })

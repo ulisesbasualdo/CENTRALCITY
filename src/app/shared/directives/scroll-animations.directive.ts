@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appScrollAnimations]',
+  selector: '[appScrollAnimations], [uiScrollAnimation]',
   standalone: true,
 })
 export class ScrollAnimationsDirective implements AfterViewInit {
@@ -13,13 +13,18 @@ export class ScrollAnimationsDirective implements AfterViewInit {
 
   private observer!: IntersectionObserver;
 
-  constructor(private el: ElementRef<HTMLElement>) {}
+  constructor(private readonly el: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit() {
     this.observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        this.el.nativeElement.style.opacity = entry.isIntersecting ? this.opacityEnd : '0';
-        this.el.nativeElement.classList.toggle(this.animationInput, entry.isIntersecting);
+        this.el.nativeElement.style.opacity = entry.isIntersecting
+          ? this.opacityEnd
+          : '0';
+        this.el.nativeElement.classList.toggle(
+          this.animationInput,
+          entry.isIntersecting
+        );
       });
     });
     this.observer.observe(this.el.nativeElement);

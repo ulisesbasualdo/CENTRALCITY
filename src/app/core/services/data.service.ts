@@ -38,7 +38,10 @@ export class DataService {
     return forkJoin([this.fetchSaludData(), this.fetchRemisesData()]);
   }
 
-  obtenerDatos(consulta: IConsulta | null, filtros: IFiltro[]): Observable<IData> {
+  obtenerDatos(
+    consulta: IConsulta | null,
+    filtros: IFiltro[]
+  ): Observable<IData> {
     const url = 'http://localhost:8001/consulta-completa';
 
     let params = new HttpParams();

@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
       display: flex;
       flex-direction: row;
       height: 200px;
+      width: 100%;
       background-color: #f0f0f0;
       border-radius: 10px;
       padding: 1em;

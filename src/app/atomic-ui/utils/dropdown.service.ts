@@ -16,7 +16,11 @@ export class DropdownService {
     let isData: boolean = false;
     const data = dropdownData;
     if (data) {
-      if (Object.values(data).filter(value => value !== null && value !== undefined).length > 0) {
+      if (
+        Object.values(data).filter(
+          value => value !== null && value !== undefined
+        ).length > 0
+      ) {
         isData = true;
       }
     }

@@ -13,6 +13,7 @@ import { IData, IDataItem } from 'src/app/core/interfaces/i-data';
 import { UIModalComponent } from '../../features/modal/modal.component';
 import { BtnComponent } from '../../atoms/btn/btn.component';
 import { UIFiltroComponent } from '../../features/filtro/filtro.component';
+import { CardComponent } from '../../molecules/card/card.component';
 
 const SALUD_CONTENT: IContent[] = [
   { id: '0', value: 'Hospital Central' },
@@ -60,6 +61,7 @@ const UNIVERSIDADES_CONTENT: IContent[] = [
     UIModalComponent,
     BtnComponent,
     UIFiltroComponent,
+    CardComponent,
   ],
   template: `
     <div class="main">
@@ -67,32 +69,40 @@ const UNIVERSIDADES_CONTENT: IContent[] = [
         <ui-vcards-header
           [filtros]="filtros"
           (cambio)="obtenerDatos(null, $event)"
-          (clean)="obtenerDatos(null, $event)" />
+          (clean)="obtenerDatos(null, $event)">
+          <div primaryActions>
+            <app-btn
+              (click)="uiModalHTML.open()"
+              [color]="'bgGrayTxtBlue'"
+              [text]="'Más Filtros'" />
+          </div>
+        </ui-vcards-header>
+
         @if (datos) {
           @for (item of datos; track item) {
             <ui-vcard>
-              <ng-container>
-                <h2>nombre: {{ item.name || 'no-name' }}</h2>
-                <p>web: {{ item.web.url || 'no-url' }}</p>
-                <p>nota: {{ item.location.address || 'no-address' }}</p>
+              <ng-container class="card-container">
+                <app-card
+                  titleText="{{ item.name || 'no-name' }}"
+                  subtitle="{{ item.web.url || 'no-url' }}"
+                  subtitleWarning="{{
+                    item.location.address || 'no-address'
+                  }}" />
               </ng-container>
             </ui-vcard>
           }
         }
-        <app-btn
-          (click)="uiModalHTML.open()"
-          [color]="'blue'"
-          [text]="'Más Filtros'"></app-btn>
-        <ui-modal #uiModalHTML [title]="'Modal de Filtros'">
-          <div class="modal-contenido">
-            @for (filtro of filtrosDeModal; track filtro) {
-              <ui-filtro [filtro]="filtro" />
-            }
-          </div>
-        </ui-modal>
+
         <ui-vscroll />
       </ui-vcards>
     </div>
+    <ui-modal #uiModalHTML [title]="'Modal de Filtros'">
+      <div class="modal-contenido">
+        @for (filtro of filtrosDeModal; track filtro) {
+          <ui-filtro [filtro]="filtro" />
+        }
+      </div>
+    </ui-modal>
   `,
   styles: `
     .main {
@@ -111,6 +121,11 @@ const UNIVERSIDADES_CONTENT: IContent[] = [
       height: 400px;
       display: flex;
       flex-direction: row;
+      gap: 1em;
+    }
+    .card-container {
+      display: flex;
+      width: 100%;
       gap: 1em;
     }
   `,

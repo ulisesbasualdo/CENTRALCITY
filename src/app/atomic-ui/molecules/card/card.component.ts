@@ -9,7 +9,7 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
   template: `
     <div class="card" [class.new-card]="isNewCard()">
       <div class="card-header">
-        @if (title()) {
+        @if (titleText()) {
           <h2 class="title">{{ superTitle() }}</h2>
         }
         @if (subtitle()) {
@@ -48,8 +48,8 @@ import { ISocialData } from 'src/app/core/interfaces/i-data';
   ],
 })
 export class CardComponent {
-  public title = input<string>();
-  public superTitle = computed(() => this.title()?.toLocaleUpperCase());
+  public titleText = input<string>();
+  public superTitle = computed(() => this.titleText()?.toLocaleUpperCase());
   public isNewCard = input<boolean>();
   public subtitle = input<string>();
   public subtitleWarning = input<string>();

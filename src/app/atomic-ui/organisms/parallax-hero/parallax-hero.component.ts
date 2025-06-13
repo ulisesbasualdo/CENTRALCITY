@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ScrollAnimationsDirective } from '../../../shared/directives/scroll-animations.directive';
+import { ScrollAnimationsDirective } from 'src/app/shared/directives/scroll-animations.directive';
 
 @Component({
   selector: 'app-parallax-hero',
@@ -8,8 +8,12 @@ import { ScrollAnimationsDirective } from '../../../shared/directives/scroll-ani
   template: `
     <section class="header">
       <div class="header-content">
-        <h1 appAnimations animationInput="fadeInTop-hero">Miramar <span>Centralizada</span></h1>
-        <p appAnimations animationInput="fadeInBottom-hero">Toda su información vital en un solo lugar!</p>
+        <h1 uiScrollAnimation animationInput="fadeInTop-hero">
+          Miramar <span>Centralizada</span>
+        </h1>
+        <p uiScrollAnimation animationInput="fadeInBottom-hero">
+          Toda su información vital en un solo lugar!
+        </p>
       </div>
       <img class="header-image" src="img/cover.webp" alt="Mi Lugar Miramar" />
     </section>

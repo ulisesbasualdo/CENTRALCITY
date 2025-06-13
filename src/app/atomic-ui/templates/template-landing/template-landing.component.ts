@@ -1,4 +1,13 @@
-import { Component, effect, ElementRef, Input, signal, viewChild, viewChildren, OnDestroy } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  Input,
+  signal,
+  viewChild,
+  viewChildren,
+  OnDestroy,
+} from '@angular/core';
 import { ParallaxHeroComponent } from '../../organisms/parallax-hero/parallax-hero.component';
 import { TitleSubtitleComponent } from '../../atoms/title-subtitle/title-subtitle.component';
 import { CardComponent } from '../../molecules/card/card.component';
@@ -22,38 +31,62 @@ import { NewCardsLandingComponent } from '../new-cards-landing/new-cards-landing
     NewCardsLandingComponent,
   ],
   template: `
-    <!-- @if (data) { -->
-    <!-- <app-parallax-hero /> -->
-    <section>
-      <app-new-cards-landing />
-    </section>
-    <!-- @for (item of data; track item; let itemIndex = $index) {
+    @if (data) {
+      <app-parallax-hero />
+      <section>
+        <app-new-cards-landing />
+      </section>
+      @for (item of data; track item; let itemIndex = $index) {
         <section>
-          <app-title-subtitle [title]="item.name" [subtitle]="item.description" />
+          <app-title-subtitle
+            [title]="item.name"
+            [subtitle]="item.description" />
           <div class="container">
-            @for (dataItem of item.content; track dataItem; let dataItemIndex = $index) {
+            @for (
+              dataItem of item.content;
+              track dataItem;
+              let dataItemIndex = $index
+            ) {
               <app-card
                 #card
                 [isNewCard]="dataItem.newCard"
                 [title]="dataItem.name"
-                [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)">
+                [containerIndex]="
+                  formatContainerIndex(itemIndex, dataItemIndex)
+                ">
                 <div cardBody class="inline-block">
                   <div class="icon-container">
-                    <div class="icon-scroll" appScrolleable [spaceInBottom]="true">
+                    <div
+                      class="icon-scroll"
+                      appScrolleable
+                      [spaceInBottom]="true">
                       <div #iconWrapper class="icon-wrapper">
-                        @for (dataSocial of dataItem.social; track dataSocial; let j = $index) {
+                        @for (
+                          dataSocial of dataItem.social;
+                          track dataSocial;
+                          let j = $index
+                        ) {
                           <app-icon-img
                             [pointer]="true"
                             [srcPredefined]="dataSocial.platform"
                             [alt]="dataSocial.platform"
-                            (clickEvent)="setDataViewAndContainer(itemIndex, dataSocial, dataItemIndex, j)" />
+                            (clickEvent)="
+                              setDataViewAndContainer(
+                                itemIndex,
+                                dataSocial,
+                                dataItemIndex,
+                                j
+                              )
+                            " />
                         }
                       </div>
                     </div>
                   </div>
                   <app-data-view
                     [socialData]="socialData"
-                    [containerIndex]="formatContainerIndex(itemIndex, dataItemIndex)"
+                    [containerIndex]="
+                      formatContainerIndex(itemIndex, dataItemIndex)
+                    "
                     style="min-width: 100%;" />
                 </div>
                 <div cardFooter></div>
@@ -64,7 +97,7 @@ import { NewCardsLandingComponent } from '../new-cards-landing/new-cards-landing
       }
     } @else {
       <h2>Ha sucedido un error temporal, estamos trabajando en resolverlo.</h2>
-    } -->
+    }
   `,
   styles: [
     `
@@ -194,11 +227,23 @@ export class TemplateLandingComponent implements OnDestroy {
     this.resizeObserver.observe(this.iconWrapper()!.nativeElement);
   }
 
-  setDataViewAndContainer(itemIndex: number, data: ISocialData, dataItemIndex: number, contentIndex: number) {
-    const formatedContainerIndex = this.formatContainerIndex(itemIndex, dataItemIndex);
+  setDataViewAndContainer(
+    itemIndex: number,
+    data: ISocialData,
+    dataItemIndex: number,
+    contentIndex: number
+  ) {
+    const formatedContainerIndex = this.formatContainerIndex(
+      itemIndex,
+      dataItemIndex
+    );
 
     // Actualizar el servicio con todos los parámetros correctos
-    this.dataViewService.setDataViewAndContainer(data, formatedContainerIndex, contentIndex);
+    this.dataViewService.setDataViewAndContainer(
+      data,
+      formatedContainerIndex,
+      contentIndex
+    );
 
     // Actualizar los signals locales
     this.containerIndex.set(formatedContainerIndex);
@@ -211,11 +256,16 @@ export class TemplateLandingComponent implements OnDestroy {
   }
 
   isDataViewVisible(itemIndex: number, dataItemIndex: number): boolean {
-    return this.containerIndex() === this.formatContainerIndex(itemIndex, dataItemIndex);
+    return (
+      this.containerIndex() ===
+      this.formatContainerIndex(itemIndex, dataItemIndex)
+    );
   }
 
   scrollIcons(direction: 'left' | 'right', event: Event) {
-    const container = (event.target as HTMLElement).parentElement?.querySelector('.icon-scroll') as HTMLElement;
+    const container = (
+      event.target as HTMLElement
+    ).parentElement?.querySelector('.icon-scroll') as HTMLElement;
     const scrollAmount = 100;
 
     if (direction === 'left') {
@@ -247,7 +297,9 @@ export class TemplateLandingComponent implements OnDestroy {
 
     const container = event.currentTarget as HTMLElement;
     const x =
-      event instanceof MouseEvent ? event.pageX - container.offsetLeft : event.touches[0].pageX - container.offsetLeft;
+      event instanceof MouseEvent
+        ? event.pageX - container.offsetLeft
+        : event.touches[0].pageX - container.offsetLeft;
 
     const walk = (x - this.startX) * 2;
     container.scrollLeft = this.scrollLeft - walk;

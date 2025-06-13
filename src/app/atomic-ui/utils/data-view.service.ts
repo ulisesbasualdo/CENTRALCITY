@@ -11,7 +11,11 @@ export class DataViewService {
 
   containerContentDictionary = signal<{ [key: number]: number }>({});
 
-  setDataViewAndContainer(data: ISocialData, containerIndex: number, contentIndex: number) {
+  setDataViewAndContainer(
+    data: ISocialData,
+    containerIndex: number,
+    contentIndex: number
+  ) {
     this.contentSocial.set(data);
     this.containerIndex.set(containerIndex);
     this.contentIndex.set(contentIndex);

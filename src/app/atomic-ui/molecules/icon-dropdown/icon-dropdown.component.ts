@@ -1,5 +1,14 @@
 import { NgClass } from '@angular/common';
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  OnDestroy,
+} from '@angular/core';
 import { DropdownService } from '../../utils/dropdown.service';
 import { Subscription } from 'rxjs';
 import { ISocialData } from '../../../core/interfaces/i-data';
@@ -17,7 +26,10 @@ import { PredefinedIconService } from '@utils/predefined-icon.service';
           (click)="[toggleDropDown($event), clickEvent.emit($event)]"
           [src]="iconImg ? iconImg : ''"
           alt="" />
-        <div #data class="social-data" [ngClass]="dropDownShown ? 'show' : 'hidden'">
+        <div
+          #data
+          class="social-data"
+          [ngClass]="dropDownShown ? 'show' : 'hidden'">
           @if (isDataString(iconDropdown.username)) {
             <p>Usuario: {{ iconDropdown.username }}</p>
           }
@@ -42,11 +54,20 @@ import { PredefinedIconService } from '@utils/predefined-icon.service';
           [src]="customIconImg"
           [alt]="description"
           tabindex="0" />
-        <div #data [ngClass]="[dropDownShown ? 'show' : 'hidden', onHover ? 'social-data on-hover' : 'social-data']">
+        <div
+          #data
+          [ngClass]="[
+            dropDownShown ? 'show' : 'hidden',
+            onHover ? 'social-data on-hover' : 'social-data',
+          ]">
           <p>{{ description }}</p>
         </div>
       } @else {
-        <img class="icon-img disabled" (click)="toggleDropDown($event)" [src]="iconImg ? iconImg : ''" alt="" />
+        <img
+          class="icon-img disabled"
+          (click)="toggleDropDown($event)"
+          [src]="iconImg ? iconImg : ''"
+          alt="" />
       }
     </div>
   `,
@@ -142,7 +163,9 @@ export class IconDropdownComponent implements OnInit, OnDestroy {
   toggleDropDown(event: MouseEvent | FocusEvent): void {
     event.stopPropagation();
     this.dropDownShown = !this.dropDownShown;
-    this.dropdownService.setDropdownState(this.dropDownShown ? this.dropdownId : null);
+    this.dropdownService.setDropdownState(
+      this.dropDownShown ? this.dropdownId : null
+    );
   }
 
   isData(): boolean {

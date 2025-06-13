@@ -13,7 +13,7 @@ import { DataService } from '../../../core/services/data.service';
 export default class PageLandingComponent implements OnInit {
   data!: IData[];
 
-  constructor(private dataService: DataService) {}
+  constructor(private readonly dataService: DataService) {}
 
   ngOnInit(): void {
     this.dataService.getData().subscribe({

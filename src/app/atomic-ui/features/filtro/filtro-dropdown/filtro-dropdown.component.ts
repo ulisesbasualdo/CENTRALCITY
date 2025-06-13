@@ -29,7 +29,7 @@ import { BtnComponent } from '../../../atoms/btn/btn.component';
             <span> {{ filtro.key }}: {{ content.value }} </span>
             @if (appliedValue === content.value) {
               <app-btn
-                [text]="'X'"
+                [text]="'x'"
                 [color]="'red'"
                 [size]="'small'"
                 (click)="limpiarFiltro(filtro)" />

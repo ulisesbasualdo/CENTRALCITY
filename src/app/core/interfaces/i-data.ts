@@ -45,7 +45,17 @@ export interface IDataItem {
 }
 
 export interface ISocialData {
-  platform: 'fb' | 'ig' | 'x' | 'yt' | 'li' | 'tt' | 'gmaps' | 'phone' | 'wp' | null;
+  platform:
+    | 'fb'
+    | 'ig'
+    | 'x'
+    | 'yt'
+    | 'li'
+    | 'tt'
+    | 'gmaps'
+    | 'phone'
+    | 'wp'
+    | null;
   username: string;
   name: string;
   type: string;

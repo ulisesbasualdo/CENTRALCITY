@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
 
-type ButtonColor = 'blue' | 'red' | 'green' | 'default';
+type ButtonColor = 'blue' | 'red' | 'green' | 'bgGrayTxtBlue' | 'default';
 
 @Component({
   selector: 'app-btn',
@@ -26,9 +26,11 @@ type ButtonColor = 'blue' | 'red' | 'green' | 'default';
       border-radius: 15px;
       padding: 10px 20px;
       cursor: pointer;
-      background-color: #ececec;
       font-weight: 600;
       font-family: 'Zain', sans-serif;
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
       &.disabled {
         cursor: not-allowed;
         background-color: #f8f9fa;
@@ -38,14 +40,38 @@ type ButtonColor = 'blue' | 'red' | 'green' | 'default';
     .blue {
       background-color: #007bff;
       color: white;
+      &:hover {
+        background-color: #0056b3;
+      }
     }
     .red {
       background-color: #dc3545;
       color: white;
+      &:hover {
+        background-color: #c82333;
+      }
     }
     .green {
       background-color: #28a745;
       color: white;
+      &:hover {
+        background-color: #218838;
+      }
+    }
+    .bgGrayTxtBlue {
+      background-color: #f0f0f0;
+      color: #007bff;
+      border: 2px solid #007bff;
+      &:hover {
+        background-color: #e2e6ea;
+      }
+    }
+    .default {
+      background-color: #f8f9fa;
+      color: #212529;
+      &:hover {
+        background-color: #e2e6ea;
+      }
     }
   `,
 })

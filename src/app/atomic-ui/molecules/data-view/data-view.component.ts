@@ -125,7 +125,9 @@ import { ScrolleableContainerDirective } from '../../utils/directives/scrolleabl
         <app-btn
           text="Copiar Usuario"
           color="blue"
-          [disabled]="!socialData()?.username || socialData()?.username?.length === 0"
+          [disabled]="
+            !socialData()?.username || socialData()?.username?.length === 0
+          "
           (onClick)="copyText(socialData()?.username)" />
       </div>
     }
